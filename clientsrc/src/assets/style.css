@@ -1,0 +1,82 @@
+:root{
+  --darkteal: #08261e;
+  --teal: #005f52;
+  --lightteal: #31dbc5;
+  --white: #ffffff;
+  --black: black;
+  --darkpurple: #150d24;
+  --purple: #35216b;
+  --lightpurple: #a676ff;
+  --lightgrey: #e4e4e4;
+  --grey: #868686;
+  --darkgrey: #3d3d3d;
+  --verydarkgrey: #242424;
+  --darkgold: #a17600;
+  --lightgold: #fcdb80;
+  --gold: #eeb005;
+  --softgold: #f1eac7;
+  --softblue: #7ebfda;
+  --softpink: #cf8fdb;
+  --royalblue: #1027f0;
+}
+body{
+  background-color: #fcdb80;
+  color: var(--verydarkgrey);
+}
+
+header{
+  background-color: var(--darkteal);
+  color: var(--softgold);
+}
+
+.font-purple{
+color: var(--darkpurple);
+}
+
+.font-gold{
+color: var(--gold);
+}
+
+.font-teal{
+color: var(--darkteal);
+}
+
+.font-white{
+color: var(--white);
+}
+
+.min-height{
+  min-height: 33vh;
+}
+
+
+.rm-my{
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
+  }
+  
+  .rm-mx{
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+  
+  .rm-py{
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
+  
+  .rm-px{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .hidden{
+    display: none !important;
+  }
+
+    .font-fancy{
+      font-family: 'Norican', cursive;
+    }
+    .font-simple{
+      font-family: 'Alata', sans-serif;
+    }
