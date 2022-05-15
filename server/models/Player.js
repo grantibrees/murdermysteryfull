@@ -18,6 +18,7 @@ const Player = new Schema(
     identity1: { type: String },
     identity2: { type: String },
     isAPossibleMole: { type: Boolean },
+    lyingAbilityWeight: { type: Number },
     mole: { type: Boolean },
     sympathist: { type: Boolean },
     funFact: { type: String },
@@ -27,9 +28,9 @@ const Player = new Schema(
     roundQcount: { type: Number},
     roundQright: { type: Number},
     roundQwrong: { type: Number},
-    totalQcount: { type: Number},
-    totalQright: { type: Number},
-    totalQwrong: { type: Number},
+    gameQcount: { type: Number},
+    gameQright: { type: Number},
+    gameQwrong: { type: Number},
     //api data
     twilioParticipantData: { type: twilioParticipantSchema }
   },
