@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import HostTokensSchema from "../models/HostTokens";
-import SongSchema from "../models/Song";
+import SongSchema from "../models/Round";
 import SessionSchema from "../models/Session"
 import ProfileSchema from "../models/Profile"
 
