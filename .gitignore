@@ -2,7 +2,7 @@
 node_modules
 /dist
 authConfig.js
-
+*.json
 
 # local env files
 .env.local

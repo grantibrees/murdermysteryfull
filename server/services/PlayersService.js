@@ -2,58 +2,16 @@ import { dbContext } from "../db/DbContext";
 
 // Private Methods
 
-/**
- * Creates profile if one does not exist
- * @param {any} profile
- * @param {any} user
- */
-async function createProfileIfNeeded(profile, user) {
-  if (!profile) {
-    profile = await dbContext.Profile.create({
-      ...user,
-      subs: [user.sub]
-    });
-  }
-  return profile;
-}
-
-/**
- * Adds sub to profile if not already on profile
- * @param {any} profile
- * @param {any} user
- */
-async function mergeSubsIfNeeded(profile, user) {
-  if (!profile.subs.includes(user.sub)) {
-    // @ts-ignore
-    profile.subs.push(user.sub);
-    await profile.save();
-  }
-}
-/**
- * Restricts changes to the body of the profile object
- * @param {any} body
- */
-function sanitizeBody(body) {
-  let writable = {
-    name: body.name,
-    phones: body.phones,
-    addresses: body.addresses,
-    notes: body.notes,
-    picture: body.picture
-  };
-  return writable;
-}
-
 class ProfileService {
   /**
    * Provided an array of user emails will return an array of user profiles with email picture and name
-   * @param {String[]} emails Array of email addresses to lookup users by
+   * @param {String[]} hackerNames Array of email addresses to lookup users by
    */
-  async getProfiles(emails = []) {
-    let profiles = await dbContext.Profile.find({
-      email: { $in: emails }
+  async getAllPlayers(emails = []) {
+    let players = await dbContext.Profile.find({
+      hackerName: { $in: hackerNames }
     }).select("email picture name");
-    return profiles;
+    return players;
   }
 
   /**
@@ -64,7 +22,7 @@ class ProfileService {
    * Adds sub of Auth0 account to profile if not currently on profile
    * @param {any} user
    */
-  async getProfile(user) {
+  async getPlayerData(user) {
     let profile = await dbContext.Profile.findOne({
       email: user.email
     });

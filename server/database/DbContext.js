@@ -1,19 +1,18 @@
 import mongoose from "mongoose";
 import HostTokensSchema from "../models/HostTokens";
-import SongSchema from "../models/Round";
-import SessionSchema from "../models/Session"
-import ProfileSchema from "../models/Profile"
+import RoundSchema from "../models/Round";
+import PlayerSchema from "../models/Player"
 
 
 class DbContext {
 
-
-  Song = mongoose.model("Song", SongSchema)
-  Session = mongoose.model("Session", SessionSchema)
-
+  
+  Player = mongoose.model("Player", PlayerSchema)
+  
+  Round = mongoose.model("Round", RoundSchema)
+  
   HostTokens = mongoose.model("HostTokens", HostTokensSchema)
 
-  Profile = mongoose.model("Profile", ProfileSchema)
 
 }
 

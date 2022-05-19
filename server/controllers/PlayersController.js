@@ -1,19 +1,18 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
-import { profilesService } from "../services/ProfilesService";
+import { playersService } from "../services/PlayersService";
 
-export class ProfilesController extends BaseController {
+export class PlayersController extends BaseController {
   constructor() {
-    super("api/profile");
+    super("api/players");
     this.router
-      .use(auth0provider.getAuthorizedUserInfo)
-      .get("", this.getUserProfile)
+      .get("", this.getPlayerData)
       .put("/:id", this.edit);
   }
-  async getUserProfile(req, res, next) {
+  async getPlayerData(req, res, next) {
     try {
-      let profile = await profilesService.getProfile(req.userInfo);
+      let profile = await playersService.getPlayerData(req.userInfo);
       res.send(profile);
     } catch (error) {
       next(error);

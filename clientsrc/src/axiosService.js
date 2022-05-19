@@ -20,7 +20,7 @@ export const triviaApi = Axios.create({
 
 //we'll also want to add in &type=multiple to indicate multiple choice
 //example: https://opentdb.com/api.php?amount=50&category=17&type=multiple
-// I think we'll use categories 15, 17, 18, and 30
+// I think we'll use categories 15, 16, 17, 18, 20, and 30
 
 export const twilioApi = Axios.create({
   baseURL: "https://conversations.twilio.com/v1",
