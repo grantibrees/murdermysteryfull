@@ -9,7 +9,7 @@ export class AuthHostController extends BaseController {
     super("");
     // console.log('AuthHostController active');
     this.router
-      .get("/callback", this.authCallBack)
+      .get("/hermes", this.authCallBack)
       .get("/login", this.authorizeHost)
       .use("/auth", auth0provider.getAuthorizedUserInfo)
       .post("/auth/tokensave", this.setHostTokens)
