@@ -22,13 +22,6 @@ export default class Startup {
     app.use(cors(corsOptions));
     app.use(bp.json({ limit: "50mb" }));
 
-    // NOTE Configures auth0 middleware that is used throughout controllers
-    // This will be how to bring our Spotify Client ID and Secret in to the Server
-    auth0provider.configure({
-      domain: process.env.AUTH_DOMAIN,
-      clientId: process.env.AUTH_CLIENT_ID,
-      audience: process.env.AUTH_AUDIENCE,
-    });
   }
   static ConfigureRoutes(app) {
     let router = express.Router();

@@ -22,7 +22,6 @@
     "helmet": "^3.21.2",
     "mongoose": "^5.8.0",
     "socket.io": "^4.5.0",
-    "spotify-web-api-node": "^4.0.0",
     "twilio": "^3.77.0",
     "url": "^0.11.0",
     "vue-infinite-loading": "^2.4.5"

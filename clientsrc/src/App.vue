@@ -1,28 +1,21 @@
 <template>
-  <div class="bg-warning" id="app">
-    <transition name="slide-fade">
-      <router-view />
-    </transition>
+  <div class="">
   </div>
 </template>
 
 <script>
-import { onAuth } from "@bcwdev/auth0-vue";
-window.onSpotifyWebPlaybackSDKReady = () => {
-  // You can now initialize Spotify.Player and use the SDK
-};
+
 export default {
   name: "App",
   mounted() {
-    window.onSpotifyWebPlaybackSDKReady = () => {};
   },
   async beforeCreate() {
-    try {
-      this.$store.dispatch("initializeSocket");
-    } catch (err) {
-      console.log("the problem is in app");
-      this.$router.push({ name: "home" });
-    }
+    // try {
+    //   this.$store.dispatch("initializeSocket");
+    // } catch (err) {
+    //   console.log("the problem is in app");
+    //   this.$router.push({ name: "home" });
+    // }
   },
   components: {},
 };
