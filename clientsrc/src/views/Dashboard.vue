@@ -10,16 +10,14 @@ export default {
   name: "Dashboard",
   async mounted() {
     // this.$store.dispatch("getProfile", this.$auth.user);
-
+    this.routerPush();
   },
   methods: {
-    // getTokens(tokens) {
-    //   this.$store.dispatch("setSpotifyHostTokens", tokens);
-    //   this.$store.dispatch("saveSpotifyHostTokens", tokens);
-    //   this.$router.push({
-    //     name: "SessionCreate",
-    //   });
-    // },
+    routerPush() {
+      this.$router.push({
+        name: "Welcome",
+      });
+    },
   },
 };
 </script>

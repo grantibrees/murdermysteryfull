@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+  <div class="bg-warning" id="app">
+    <router-view />
   </div>
 </template>
 
