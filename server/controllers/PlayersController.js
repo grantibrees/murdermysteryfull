@@ -6,9 +6,15 @@ export class PlayersController extends BaseController {
   constructor() {
     super("api/players");
     this.router
-      .get("", this.getPlayerData)
-      .put("/:id", this.updatePlayerData);
+      .get("", this.getAllPlayerData)
+      .get("/:id", this.getPlayerData)
+      .get("/playerlist", this.getPlayerList)
+
+      .put("/:id", this.updatePlayerData)
+      .put("/playerlist", this.updatePlayerList)
   }
+
+  
   async getPlayerData(req, res, next) {
     try {
       let profile = await playersService.getPlayerData(req.userInfo);

@@ -1,9 +1,9 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
-class GameService {
+class RoundService {
   
-  async getGameData(roundNumber) {
+  async getRoundData(roundNumber) {
     let data = await dbContext.Session.find({ sessionCode: sessionCode });
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
@@ -12,4 +12,4 @@ class GameService {
   }
 }
 
-export const gameService = new GameService();
+export const roundService = new RoundService();

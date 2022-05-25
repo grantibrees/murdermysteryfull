@@ -9,7 +9,9 @@ export default class Startup {
     // NOTE Configure and Register Middleware
     let whitelist = [
       "https://murdermysteryfull.herokuapp.com/",
+      "https://grantignotusbrees.com/",
       "http://localhost:8080",
+      "http://localhost:3000",
     ];
     let corsOptions = {
       origin: function (origin, callback) {
@@ -20,7 +22,7 @@ export default class Startup {
     };
     app.use(helmet());
     app.use(cors(corsOptions));
-    app.use(bp.json({ limit: "50mb" }));
+    app.use(bp.json({ limit: "100mb" }));
 
   }
   static ConfigureRoutes(app) {
