@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext";
 
 // Private Methods
 
-class PlayersService {
+class HermesService {
   /**
    * @param {any} user
    */
@@ -32,4 +32,4 @@ class PlayersService {
   }
 
 }
-export const playersService = new PlayersService();
+export const hermesService = new hermesService();

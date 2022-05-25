@@ -1,36 +1,40 @@
 import mongoose from "mongoose";
 import Round from "./Round";
+import PlayerDisplayList from "./PlayerDisplayList";
+import IdentityOrderList from "./IdentityOrderList";
 const Schema = mongoose.Schema;
 
-const PlayerDisplayListSchema = new Schema(
-    {
-        firstName: { type: String },
-        lastName: { type: String },
-        hackerName: { type: String, unique: true },
-        id: { type: Number, unique: true },
-        identity1: { type: String },
-        identity2: { type: String },
-        roundEarnedVotes: { type: Number},
-        roundsWithPasses: [],
-        roundsWithFails: []
-    }
-)
+// EXAMPLE OF PlayerDisplayList
+// const PlayerDisplayListSchema = new Schema(
+//   {
+//       firstName: { type: String },
+//       lastName: { type: String },
+//       hackerName: { type: String, unique: true },
+//       id: { type: Number, unique: true },
+//       identity1: { type: String },
+//       identity2: { type: String },
+//       roundEarnedVotes: { type: Number},
+//       roundsWithPasses: [],
+//       roundsWithFails: []
+//   }
+// )
 
-const IdentityOrderListSchema = new Schema(
-    {
-        identityName: { type: String },
-        identityOrder: { type: Number },
-        totalVoteCount: { type: Number }
-    }
-)
+// EXAMPLE of IdentityOrderList
+// const IdentityOrderListSchema = new Schema(
+//   {
+//       identityName: { type: String },
+//       identityOrder: { type: Number },
+//       totalVoteCount: { type: Number }
+//   }
+// )
 
-const Game = new Schema(
+const GameSchema = new Schema(
   {
     roundData: { type: Round},
     currentRoundNumber: { type: Number },
     currentPhaseNumber: { type: Number },
-    playersList: [PlayerDisplayListSchema],
-    identitiesList: [IdentityOrderListSchema],
+    playersList: [PlayerDisplayList],
+    identitiesList: [IdentityOrderList],
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

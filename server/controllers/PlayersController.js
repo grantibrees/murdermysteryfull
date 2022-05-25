@@ -1,6 +1,5 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
-import auth0provider from "@bcwdev/auth0provider";
 import { playersService } from "../services/PlayersService";
 
 export class PlayersController extends BaseController {
@@ -8,7 +7,7 @@ export class PlayersController extends BaseController {
     super("api/players");
     this.router
       .get("", this.getPlayerData)
-      .put("/:id", this.edit);
+      .put("/:id", this.updatePlayerData);
   }
   async getPlayerData(req, res, next) {
     try {
@@ -18,12 +17,20 @@ export class PlayersController extends BaseController {
       next(error);
     }
   }
-  async edit(req, res, next) {
+  async updatePlayerData(req, res, next) {
     try {
-      req.body.creatorId = req.user.sub;
-      res.send(req.body);
+      let data = await playersService.updatePlayerData(
+        req.params.id,
+        req.body
+      );
+      socketService.messageRoom(
+        "id-" + req.params.id,
+        "playerDataUpdated",
+        { id: req.params.id }
+      );
+      return res.send({ data: data, message: "updated player" });
     } catch (error) {
-      next(error);
+      console.error(error);
     }
   }
 }
