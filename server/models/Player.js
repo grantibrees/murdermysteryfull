@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const Player = new Schema(
+const PlayerSchema = new Schema(
   {
     //player info
     firstName: { type: String },
@@ -32,4 +32,4 @@ const Player = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Player;
+export default PlayerSchema;

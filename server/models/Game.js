@@ -39,4 +39,4 @@ const GameSchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Game;
+export default GameSchema;

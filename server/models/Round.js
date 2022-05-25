@@ -4,7 +4,7 @@ import Phase2 from "./Phase2";
 import Phase3 from "./Phase3";
 const Schema = mongoose.Schema;
 
-const Round = new Schema(
+const RoundSchema = new Schema(
   {
     roundNumber: { type: Number },
     currentPhaseNumber: { type: Number },
@@ -15,4 +15,4 @@ const Round = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Round;
+export default RoundSchema;
