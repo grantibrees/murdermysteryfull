@@ -32,4 +32,4 @@ class HermesService {
   }
 
 }
-export const hermesService = new hermesService();
+export const hermesService = new HermesService();

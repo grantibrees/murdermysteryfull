@@ -15,13 +15,13 @@ class DbContext {
 
   Game = mongoose.model("Game", GameSchema)
   Round = mongoose.model("Round", RoundSchema)
-  Player = mongoose.model("Player", PlayerSchema)
+  Players = mongoose.model("Players", PlayerSchema)
   PlayerList = mongoose.model("PlayerList", PlayerDisplayListSchema)
   IdentityList = mongoose.model("IdentityList", IdentityOrderListSchema)
   Phase1 = mongoose.model("Phase1", Phase1)
   Phase2 = mongoose.model("Phase2", Phase2)
   Phase3 = mongoose.model("Phase3", Phase3)
-  HermesText = mongoose.model("HermesText", HermesTextSchema)
+  Hermes = mongoose.model("Hermes", HermesTextSchema)
 
 }
 
