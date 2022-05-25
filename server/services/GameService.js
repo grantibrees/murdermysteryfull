@@ -1,5 +1,5 @@
-import { dbContext } from "../db/DbContext";
-import { BadRequest } from "../utils/Errors";
+import { dbContext } from "../database/DbContext";
+import { BadRequest } from "../utilities/Errors";
 
 class GameService {
   

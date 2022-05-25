@@ -1,5 +1,5 @@
 import SocketIO from "socket.io";
-import auth0provider from "@bcwdev/auth0provider";
+// import auth0provider from "@bcwdev/auth0provider";
 class SocketService {
   io = SocketIO();
   /**

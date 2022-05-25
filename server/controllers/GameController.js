@@ -1,5 +1,5 @@
 import express from "express";
-import BaseController from "../utils/BaseController";
+import BaseController from "../utilities/BaseController";
 import { gameService } from "../services/GameService";
 import socketService from "../services/SocketService";
 
