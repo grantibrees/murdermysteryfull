@@ -22,17 +22,6 @@ const routes = [
     path: '/display',
     name: 'Display',
     component: Display,
-
-    children: [ 
-      {
-        path: '/cyberpunks',
-        name: 'Cyberpunks'
-      },
-      {
-        path: '/mole',
-        name: 'Mole'
-      }
-    ] 
   }
 ]
 

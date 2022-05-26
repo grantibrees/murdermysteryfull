@@ -17,10 +17,6 @@ export default {
     };
   },
 
-  mounted() {
-    console.log("BALLS");
-  },
-
   components: {
       dropDown
   }

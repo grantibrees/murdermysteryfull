@@ -9,17 +9,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // trackSearchResults: [],
-    // user: {},
+    player: "",
+    mole: false
   },
   mutations: {
-    // setUser(state, user) {
-    //   state.user = user;
-    // },
-    
+    setPlayer(state, player) {
+      state.player = player;
+    }
   },
   actions: {
 
+    async setPlayer({ commit }, player) {
+      try {
+        commit("setPlayer", player);
+      } catch (err) {
+        console.log(err)
+      }
+    }
     // resetBearer() {
     //   api.defaults.headers.authorization = "";
     //   hostTokensApi.defaults.headers.authorization = "";

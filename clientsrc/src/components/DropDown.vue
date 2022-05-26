@@ -31,7 +31,11 @@ export default {
         if (result.isConfirmed) {
           Swal.fire({
             title: 'GOOD, ON TO THE NEXT STAGE OF THE GAME',
-            showConfirmButton: false
+            showConfirmButton: false,
+            timer: 3000
+            }).then(() => {
+              this.$store.dispatch("setPlayer", hackerName);
+              this.$router.push({ name: "Display" });
             })
         } else if (result.isDismissed) {
           Swal.fire({

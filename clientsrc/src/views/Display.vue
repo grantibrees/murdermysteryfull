@@ -1,27 +1,27 @@
 <template>
-  <div class="textdisplay container-fluid">
+  <div class="display container-fluid">
+    <mole v-if="isMole"/>
+    <cyberPunk v-else/>
   </div>
 </template>
 
 
 <script>
-import dropDown from "../components/DropDown";
+import cyberPunk from "../components/Cyberpunk.vue";
+import mole from "../components/Mole.vue";
 import json from "../../../server/utilities/RawPlayerDataTest.json";
 
 export default {
-  name: "Welcome",
+  name: "Display",
   data() {
     return {
-      players: json.players,
+      isMole: this.$store.state.mole
     };
   },
 
-  mounted() {
-    console.log("BALLS");
-  },
-
   components: {
-      dropDown
+      cyberPunk,
+      mole
   }
 };
 </script>
