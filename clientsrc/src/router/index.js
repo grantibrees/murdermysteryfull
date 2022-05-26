@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // @ts-ignore
-import Dashboard from '../views/Dashboard.vue'
+import Admin from '../views/Admin.vue'
 import Welcome from '../views/Welcome.vue'
 import Display from '../views/Display.vue'
 
@@ -10,11 +10,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Dashboard',
-    component: Dashboard
-  },
-  {
-    path: '/welcome',
     name: 'Welcome',
     component: Welcome
   },
@@ -22,7 +17,12 @@ const routes = [
     path: '/display',
     name: 'Display',
     component: Display,
-  }
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
+  },
 ]
 
 
