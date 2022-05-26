@@ -38,24 +38,27 @@ export default {
     },
     changeSong(state) {
       console.log(state);
-      if (
-        state &&
-        state != this.currentState &&
-        state.paused &&
-        this.changingTrack == false &&
-        state.position === 0
-      ) {
-        console.log("Track ended");
-        this.changingTrack = true;
-        this.currentState = state;
-        this.$store.dispatch("changeSong");
-      } else if (state.paused == false && state.position > 1000) {
+      if (state && state != this.currentState) {
+        this.play()
+      } else (state.paused == false && state.position > 1000); {
         this.changingTrack = false;
       }
     },
-  }, /* Functions and functionality that make the component work
-  */
+    moveFoodItemToTracker() {
+      this.$store.dispatch("moveFoodItemToTracker", { data: this.foodData, type: "common" })
+    },
+  }, /* Functions and functionality that make the component work. Commit and Dispatch here. 
+  Commit sets things to the State, while Dispatch calls a function that contacts the server*/
+  
 
+   components: {}
+    /* Pulls a components file as a child to reference. ÷*/,
+
+  props: [
+    "carData",
+  ] /* More like a parameter than anything. Gets passed to a View. In the template in the View will look like :carData="car" or "carData="{keys: values} */,
+
+  
 };
 </script>
 
