@@ -9,27 +9,51 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    player: "",
+    allPlayers: {},
+    player: {},
+    hackerName: "",
     mole: false
   },
   mutations: {
+    setAllPlayers(state, players) {
+      state.allPlayers = players;
+    },
     setPlayer(state, player) {
       state.player = player;
+    },
+    setHackerName(state, hackerName) {
+      state.hackerName = hackerName;
     }
   },
   actions: {
-
-    async setPlayer({ commit }, player) {
+    async setHackerName({ commit }, hackerName) {
       try {
-        commit("setPlayer", player);
+        commit("setHackerName", hackerName);
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    async getPlayer({ commit }, hackerName) {
+      try {
+        let res = await api.get("/players/" + hackerName)
+        console.log(res.data);
+        commit("setPlayer", res.data);
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    async getAllPlayers({ commit }) {
+      try {
+        let res = await api.get("/players")
+        console.log(res.data);
+        commit("setPlayer", res.data);
       } catch (err) {
         console.log(err)
       }
     }
-    // resetBearer() {
-    //   api.defaults.headers.authorization = "";
-    //   hostTokensApi.defaults.headers.authorization = "";
-    // },
+
 
     // async getProfile({ commit }) {
     //   try {

@@ -9,7 +9,6 @@
 <script>
 import cyberPunk from "../components/Cyberpunk.vue";
 import mole from "../components/Mole.vue";
-import json from "../../../server/utilities/RawPlayerDataTest.json";
 
 export default {
   name: "Display",

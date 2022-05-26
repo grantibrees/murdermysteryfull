@@ -7,7 +7,8 @@
 
 <script>
 import dropDown from "../components/DropDown";
-import json from "../../../server/utilities/RawPlayerDataTest.json";
+// update to pull list of players from back-end
+import json from "../rawdata/rawPlayerDataTest.json";
 
 export default {
   name: "Welcome",
@@ -15,6 +16,10 @@ export default {
     return {
       players: json.players,
     };
+  },
+  
+  mounted() {
+    this.$store.dispatch("getAllPlayers");
   },
 
   components: {

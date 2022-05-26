@@ -34,7 +34,7 @@ export default {
             showConfirmButton: false,
             timer: 3000
             }).then(() => {
-              this.$store.dispatch("setPlayer", hackerName);
+              this.$store.dispatch("setHackerName", hackerName);
               this.$router.push({ name: "Display" });
             })
         } else if (result.isDismissed) {
