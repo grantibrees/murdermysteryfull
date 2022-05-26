@@ -1,6 +1,12 @@
 <template>
   <div class="Welcome container-fluid">
-    <dropDown :players="players"/>
+    <h1 class="">W3LC0M3 B4CK</h1>
+    <b-dropdown id="dropdown-1" text="WH0 AR3 Y0U?" class="m-md-2">
+    <dropDown v-for="player in getPlayersArray"
+      :playerData="player"
+      :key="player.hackerName"
+    />
+    </b-dropdown>
   </div>
 </template>
 
@@ -12,12 +18,13 @@ import json from "../rawdata/rawPlayerDataTest.json";
 
 export default {
   name: "Welcome",
-  data() {
-    return {
-      players: json.players,
-    };
+
+  computed: {
+   getPlayersArray() {
+      return this.$store.state.allPlayers
+    }
   },
-  
+
   mounted() {
     this.$store.dispatch("getAllPlayers");
   },

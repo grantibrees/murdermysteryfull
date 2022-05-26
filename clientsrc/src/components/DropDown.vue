@@ -1,9 +1,9 @@
 <template>
   <div :class="dimensionsClass">
-    <h1 class="">W3LC0M3 B4CK</h1>
-    <b-dropdown id="dropdown-1" text="WH0 AR3 Y0U?" class="m-md-2">
-    <b-dropdown-item @click="confirmPopUp(player.hackerName)" v-for="player in players" :key="player.id">{{ player.hackerName }}</b-dropdown-item>
-    </b-dropdown>
+
+    <!-- <b-dropdown-item v-for="player in getPlayersArray" @click="confirmPopUp(player.hackerName)" :key="player.id">{{ player.hackerName }}</b-dropdown-item> -->
+    <b-dropdown-item @click="confirmPopUp(player.hackerName)" :key="player.id">{{ player.hackerName }}</b-dropdown-item>
+
   </div>
 </template>
 
@@ -15,7 +15,13 @@ export default {
 
   data () {
     return {
-      dimensionsClass: 'rm-my'
+      dimensionsClass: 'rm-my',
+    }
+  },
+
+  computed: {
+    getPlayersArray() {
+      return this.$store.state.allPlayers
     }
   },
 
@@ -48,8 +54,7 @@ export default {
       })
     }
   },
-
-  props: ["players"]
+  props: ["player"]
 };
 </script>
 
