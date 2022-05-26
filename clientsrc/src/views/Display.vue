@@ -1,6 +1,6 @@
 <template>
   <div class="display container-fluid">
-    <mole v-if="isMole"/>
+    <mole v-if="isMole" :playerData="getPlayersArray" />
     <cyberPunk v-else/>
   </div>
 </template>
@@ -16,6 +16,19 @@ export default {
     return {
       isMole: this.$store.state.mole
     };
+  },
+
+  mounted() {
+    this.$store.dispatch("getPlayer")
+  },
+
+  computed: {
+    getPlayersArray() {
+      return this.$store.state.allPlayers
+    },
+    getCurrentHacker() {
+      return this.$store.state.hackerIdentity
+    }
   },
 
   components: {

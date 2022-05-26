@@ -20,8 +20,7 @@ export default {
   name: "Welcome",
 
   computed: {
-   getPlayersArray() {
-      console.log("WORKS", this.$store.state.allPlayers)
+    getPlayersArray() {
       return this.$store.state.allPlayers
     }
   },
