@@ -1,5 +1,6 @@
 <template>
   <div class="display container-fluid">
+    <h1>DISPLAY VIEW</h1>
     <mole v-if="isMole" />
     <cyberPunk v-else :firstName="getFirstName" />
   </div>
@@ -21,11 +22,11 @@ export default {
 
   computed: {
     isMole() {
-      return this.$store.state.mole
+      return this.$store.state.player.mole
     },
 
     getFirstName() {
-      return this.$store.state.firstName
+      return this.$store.state.player.firstName
     }
   },
 

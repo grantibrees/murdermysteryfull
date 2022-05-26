@@ -25,7 +25,9 @@ export default {
       cars() {
       return this.store.state.cars;
   */,
+  actions: {
 
+  },
 
   methods: {
     play() {
