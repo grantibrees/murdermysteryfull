@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 //Identities are handled in the Round struct
 
 
-const Phase3 = new Schema(
+const Phase3Schema = new Schema(
   {
     timer: { type: Number },
     playersMission: []
@@ -14,4 +14,4 @@ const Phase3 = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Phase3;
+export default Phase3Schema;

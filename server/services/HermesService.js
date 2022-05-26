@@ -1,4 +1,4 @@
-import { dbContext } from "../db/DbContext";
+import { dbContext } from "../database/DbContext";
 
 // Private Methods
 
@@ -32,4 +32,4 @@ class HermesService {
   }
 
 }
-export const hermesService = new hermesService();
+export const hermesService = new HermesService();

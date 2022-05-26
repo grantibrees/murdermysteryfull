@@ -1,5 +1,5 @@
 import express from "express";
-import BaseController from "../utils/BaseController";
+import BaseController from "../utilities/BaseController";
 import { playersService } from "../services/PlayersService";
 
 export class PlayersController extends BaseController {

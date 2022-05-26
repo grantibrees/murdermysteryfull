@@ -4204,12 +4204,12 @@
             "category": "Mythology",
             "type": "multiple",
             "difficulty": "easy",
-            "question": "Who was the King of Gods in Ancient Greek mythology?",
-            "correct_answer": "Zeus",
+            "question": "Who was the herald of the Gods in Ancient Greek mythology?",
+            "correct_answer": "Hermes",
             "incorrect_answers": [
                 "Apollo",
-                "Hermes",
-                "Poseidon"
+                "Artemis",
+                "Athena"
             ]
         },
         {

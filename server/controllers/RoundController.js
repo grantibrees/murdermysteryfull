@@ -1,5 +1,5 @@
 import express from "express";
-import BaseController from "../utils/BaseController";
+import BaseController from "../utilities/BaseController";
 import { roundService } from "../services/RoundService";
 import socketService from "../services/SocketService";
 
@@ -8,10 +8,10 @@ export class RoundController extends BaseController {
     super("api/round");
     this.router
       .get("/:roundnum", this.getRoundData)
-      .get("/:roundnum/:phasenum", this.getPhaseData)
+      // .get("/:roundnum/:phasenum", this.getPhaseData)
 
-      .put("/:roundnum", this.updateRoundData)
-      .put("/:roundnum/:phasenum", this.updatePhaseData)
+      // .put("/:roundnum", this.updateRoundData)
+      // .put("/:roundnum/:phasenum", this.updatePhaseData)
   }
 
   async getRoundData(req, res, next) {

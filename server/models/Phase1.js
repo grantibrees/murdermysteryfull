@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Phase1: trivia questions
 //AKA "Data Mining"
 
-const Phase1 = new Schema(
+const Phase1Schema = new Schema(
   {
     timer: { type: Number },
     questions: [],
@@ -12,4 +12,4 @@ const Phase1 = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Phase1;
+export default Phase1Schema;

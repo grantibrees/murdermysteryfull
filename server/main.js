@@ -1,7 +1,7 @@
-  import express from "express";
+import express from "express";
 import Socket from "./services/SocketService";
 import Startup from "./Startup";
-import DbContext from "./db/DbConfig";
+import DbContext from "./database/DbConfig";
 
 //create server & socketServer
 const app = express();
