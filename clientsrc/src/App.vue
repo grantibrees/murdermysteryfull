@@ -12,7 +12,7 @@ export default {
   },
   async beforeCreate() {
     try {
-      this.$store.dispatch("initializeSocket");
+      // this.$store.dispatch("initializeSocket");
     } catch (err) {
       console.log("the problem is in App.vue");
       this.$router.push({ name: "Welcome" });
