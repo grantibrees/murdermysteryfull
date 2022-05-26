@@ -1,7 +1,7 @@
 <template>
   <div class="display container-fluid">
-    <mole v-if="isMole" :playerData="getPlayersArray" />
-    <cyberPunk v-else/>
+    <mole v-if="isMole" />
+    <cyberPunk v-else :firstName="getFirstName" />
   </div>
 </template>
 
@@ -12,22 +12,20 @@ import mole from "../components/Mole.vue";
 
 export default {
   name: "Display",
+
   data() {
     return {
-      isMole: this.$store.state.mole
-    };
-  },
-
-  mounted() {
-    this.$store.dispatch("getPlayer")
+      isMole: this.isMole
+    }
   },
 
   computed: {
-    getPlayersArray() {
-      return this.$store.state.allPlayers
+    isMole() {
+      return this.$store.state.mole
     },
-    getCurrentHacker() {
-      return this.$store.state.hackerIdentity
+
+    getFirstName() {
+      return this.$store.state.firstName
     }
   },
 

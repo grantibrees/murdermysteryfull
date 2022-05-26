@@ -41,8 +41,8 @@ export default new Vuex.Store({
     },
     setPlayer(state, player) {
       state.player = player,
-      state.firstName = player.firstName
-      state.lastName = player.lastName
+      state.firstName = player.firstName,
+      state.lastName = player.lastName,
       state.hackerName = player.hackerName,
       state.phoneNum = player.phoneNum,
       state.id = player.id,
