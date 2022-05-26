@@ -1,7 +1,6 @@
 import express from "express";
 import BaseController from "../utilities/BaseController";
 import { roundService } from "../services/RoundService";
-import socketService from "../services/SocketService";
 
 export class RoundController extends BaseController {
   constructor() {
