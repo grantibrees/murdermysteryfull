@@ -1,16 +1,13 @@
 import express from "express";
-import Socket from "./services/SocketService";
 import Startup from "./Startup";
 import DbContext from "./database/DbConfig";
 
-//create server & socketServer
+//create server
 const app = express();
-const socketServer = require("http").createServer(app);
-const io = require("socket.io")(socketServer);
+const server = require("http").createServer(app);
 const port = process.env.PORT || 3000;
 
-//Establish Socket
-Socket.setIO(io);
+//Establish app
 Startup.ConfigureGlobalMiddleware(app);
 Startup.ConfigureRoutes(app);
 
@@ -18,6 +15,6 @@ Startup.ConfigureRoutes(app);
 DbContext.connect();
 
 //Start Server
-socketServer.listen(port, () => {
+server.listen(port, () => {
   console.log(`[SERVING ON PORT: ${port}]`);
 });

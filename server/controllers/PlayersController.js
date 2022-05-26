@@ -54,11 +54,6 @@ export class PlayersController extends BaseController {
         req.params.id,
         req.body
       );
-      socketService.messageRoom(
-        "id-" + req.params.id,
-        "playerDataUpdated",
-        { id: req.params.id }
-      );
       return res.send({ data: data, message: "updated player" });
     } catch (error) {
       console.error(error);
