@@ -2,7 +2,7 @@
   <div :class="dimensionsClass">
 
     <!-- <b-dropdown-item v-for="player in getPlayersArray" @click="confirmPopUp(player.hackerName)" :key="player.id">{{ player.hackerName }}</b-dropdown-item> -->
-    <b-dropdown-item @click="confirmPopUp(player.hackerName)" :key="player.id">{{ player.hackerName }}</b-dropdown-item>
+    <b-dropdown-item @click="confirmPopUp(playerData.hackerName)" :key="playerData.id">{{ playerData.hackerName }}</b-dropdown-item>
 
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
       })
     }
   },
-  props: ["player"]
+  props: ["playerData"]
 };
 </script>
 

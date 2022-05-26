@@ -9,14 +9,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    allPlayers: {},
+    allPlayers: [],
     player: {},
     hackerName: "",
     mole: false
   },
   mutations: {
-    setAllPlayers(state, players) {
-      state.allPlayers = players;
+    setAllPlayers(state, allPlayers) {
+      state.allPlayers = allPlayers;
     },
     setPlayer(state, player) {
       state.player = player;
@@ -48,7 +48,7 @@ export default new Vuex.Store({
       try {
         let res = await api.get("/players")
         console.log(res.data);
-        commit("setPlayer", res.data);
+        commit("setAllPlayers", res.data);
       } catch (err) {
         console.log(err)
       }

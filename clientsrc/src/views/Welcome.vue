@@ -4,7 +4,7 @@
     <b-dropdown id="dropdown-1" text="WH0 AR3 Y0U?" class="m-md-2">
     <dropDown v-for="player in getPlayersArray"
       :playerData="player"
-      :key="player.hackerName"
+      :key="player.id"
     />
     </b-dropdown>
   </div>
@@ -21,6 +21,7 @@ export default {
 
   computed: {
    getPlayersArray() {
+      console.log("WORKS", this.$store.state.allPlayers)
       return this.$store.state.allPlayers
     }
   },
