@@ -1,0 +1,12 @@
+{
+    "identitiesList": [
+        {"identityName":"Redeye", "identityOrder":0, "totalVoteCount":0},
+        {"identityName":"Ironwire", "identityOrder":1, "totalVoteCount":0},
+        {"identityName":"Glassknife", "identityOrder":2, "totalVoteCount":0},
+        {"identityName":"Ghost", "identityOrder":3, "totalVoteCount":0},
+        {"identityName":"Cloak", "identityOrder":4, "totalVoteCount":0},
+        {"identityName":"Cyborg", "identityOrder":5, "totalVoteCount":0},
+        {"identityName":"Bugger", "identityOrder":6, "totalVoteCount":0},
+        {"identityName":"Netrunner", "identityOrder":7, "totalVoteCount":0}
+    ]
+}

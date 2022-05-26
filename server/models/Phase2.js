@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 //Phase 2: Identity voting
 //Identities are handled in the Round struct
 
-const Phase2 = new Schema(
+const Phase2Schema = new Schema(
   {
     timer: { type: Number },    
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Phase2;
+export default Phase2Schema;
