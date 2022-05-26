@@ -6,19 +6,33 @@ export class PlayersController extends BaseController {
   constructor() {
     super("api/players");
     this.router
-      .get("", this.getAllPlayerData)
-      .get("/:id", this.getPlayerData)
-      .get("/playerlist", this.getPlayerList)
+      // .get("", this.getAllPlayerData)
+      .get("/:hackername", this.getPlayerData)
+      // .get("/playerlist", this.getPlayerList)
 
       .put("/:id", this.updatePlayerData)
-      .put("/playerlist", this.updatePlayerList)
+      // .put("/playerlist", this.updatePlayerList)
+
+      .post("/post", this.postPlayers)
   }
 
+  async postPlayers(req, res, next) {
+    try {
+      let payload = {
+        players: req.body.players
+      };
+      // console.log(payload)
+      await playersService.uploadPlayers(payload);
+      res.send("Players uploaded");
+    } catch (error) {
+      next(error)
+    }
+  }
   
   async getPlayerData(req, res, next) {
     try {
-      let profile = await playersService.getPlayerData(req.userInfo);
-      res.send(profile);
+      let playerData = await playersService.getPlayerData(req.params.hackername);
+      res.send(playerData);
     } catch (error) {
       next(error);
     }

@@ -6,12 +6,24 @@ class PlayersService {
   /**
    * @param {any} user
    */
-  async getPlayerData(user) {
-    let profile = await dbContext.Profile.findOne({
-      hackerName: player.hackerName
+  async getPlayerData(hackerName) {
+    let playerData = await dbContext.Players.findOne({
+      hackerName: hackerName
     });
-    await mergeSubsIfNeeded(profile, user);
-    return profile;
+    return playerData;
+  }
+
+  async uploadPlayers(data){
+    try {
+        let list = data.players
+        console.log(list)
+        for (let i in list){
+          console.log(list[i])
+          await dbContext.Players.create(list[i])
+        }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   async updatePlayerData(sessionCode, body) {
