@@ -3,13 +3,17 @@ import { dbContext } from "../database/DbContext";
 // Private Methods
 
 class PlayersService {
-  /**
-   * @param {any} user
-   */
+
   async getPlayerData(hackerName) {
     let playerData = await dbContext.Players.findOne({
       hackerName: hackerName
     });
+    return playerData;
+  }
+
+  async getAllPlayerData() {
+    let filter = {}
+    let playerData = await dbContext.Players.find(filter);
     return playerData;
   }
 
