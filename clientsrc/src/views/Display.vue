@@ -1,6 +1,5 @@
 <template>
-  <div class="Welcome container-fluid">
-    <dropDown :players="players"/>
+  <div class="textdisplay container-fluid">
   </div>
 </template>
 

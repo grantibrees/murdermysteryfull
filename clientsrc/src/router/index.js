@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 // @ts-ignore
 import Dashboard from '../views/Dashboard.vue'
 import Welcome from '../views/Welcome.vue'
-
+import Display from '../views/Display.vue'
 
 Vue.use(VueRouter)
 
@@ -17,21 +17,23 @@ const routes = [
     path: '/welcome',
     name: 'Welcome',
     component: Welcome
+  },
+  {
+    path: '/display',
+    name: 'Display',
+    component: Display,
+
+    children: [ 
+      {
+        path: '/cyberpunks',
+        name: 'Cyberpunks'
+      },
+      {
+        path: '/mole',
+        name: 'Mole'
+      }
+    ] 
   }
-  // {
-
-  //   path: '/dashboard',
-  //   name: 'Dashboard',
-  //   component: Dashboard,
-
-  //   children: [
-  //     {
-  //       path: '/session',
-  //       name: 'Session',
-  //       component: Session
-  //     },
-  //   ]
-  // },
 ]
 
 

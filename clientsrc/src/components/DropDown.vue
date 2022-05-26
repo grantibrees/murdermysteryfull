@@ -1,61 +1,51 @@
 <template>
-  <div>
-    <h1>BALLS</h1>
-    <b-dropdown id="dropdown-1" text="Dropdown Button" class="m-md-2">
-    <b-dropdown-item>First Action</b-dropdown-item>
-    <b-dropdown-item>Second Action</b-dropdown-item>
-    <b-dropdown-item>Third Action</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item active>Active action</b-dropdown-item>
-    <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+  <div :class="dimensionsClass">
+    <h1 class="">W3LC0M3 B4CK</h1>
+    <b-dropdown id="dropdown-1" text="WH0 AR3 Y0U?" class="m-md-2">
+    <b-dropdown-item @click="confirmPopUp(player.hackerName)" v-for="player in players" :key="player.id">{{ player.hackerName }}</b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
+
 <script>
 import Swal from "sweetalert2";
+
 export default {
-  name: "DropDown" /*  */,
-  data() {
-    /* Data binding. */
+  name: "DropDown",
+
+  data () {
     return {
-      // currentState: {},
-    };
+      dimensionsClass: 'rm-my'
+    }
   },
 
-  watch: {
-    // playing: function () {
-    //   this.playpause();
-    // },
-  },
-  mounted() {
-  } /* Runs functions on startup */,
-
-  computed: {
-    // activeSession() {
-    //   return this.$store.state.activeSession;
-    },
-    // playing() {
-    //   return this.$store.state.playing;
-    // },
-   /* Pulls values from the store. Always the value of the method that's in it. The live value. Constant value, has to have a return in it, it's a getter. It's like a listener, listening to the state. It gets the state.
-      cars() {
-      return this.store.state.cars;
-  */
-  async mounted() {
-    // await this.initiatePlayer();
-  },
   methods: {
-
-    // play() {
-    //   this.$store.dispatch("playCurrentSong");
-    // },
-    // playpause() {
-    //   this.spotifySDK.togglePlay().then(() => {
-    //     console.log("Toggled playback!");
-    //   });
-    // },
-
+    confirmPopUp(hackerName) {
+      Swal.fire({
+        title: hackerName,
+        text: 'r U suR3 7h12 12 U?',
+        showCancelButton: true,
+        confirmButtonText: 'y35, 1 4m very $m4rt',
+        cancelButtonText: 'H4H4H4H4H44H4',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'GOOD, ON TO THE NEXT STAGE OF THE GAME',
+            showConfirmButton: false
+            })
+        } else if (result.isDismissed) {
+          Swal.fire({
+            title: 'FUCKIN REALLY?',
+            text: 'YOU SUCK, TRY AGAIN',
+            showConfirmButton: false,
+            timer: 4500
+            })
+        }
+      })
+    }
   },
+
+  props: ["players"]
 };
 </script>
 
