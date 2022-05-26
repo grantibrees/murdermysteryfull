@@ -17,13 +17,11 @@
     "dotenv": "^8.1.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "force-ssl-heroku": "^1.0.2",
     "helmet": "^3.21.2",
     "mongoose": "^5.8.0",
     "socket.io": "^4.5.0",
     "twilio": "^3.77.0",
-    "url": "^0.11.0",
-    "vue-infinite-loading": "^2.4.5"
+    "url": "^0.11.0"
   },
   "engines": {
     "node": "^12.0.0",
