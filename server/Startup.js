@@ -10,6 +10,7 @@ export default class Startup {
     let whitelist = [
       "https://murdermysteryfull.herokuapp.com/",
       "https://grantignotusbrees.com/",
+      "http://grantignotusbrees.com/",
       "http://localhost:8080",
     ];
     let corsOptions = {

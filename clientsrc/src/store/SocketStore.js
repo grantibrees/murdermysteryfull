@@ -1,4 +1,4 @@
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 let socket = {};
 
@@ -30,13 +30,13 @@ export const socketStore = {
       // });
     },
 
-    joinRoom({ commit, dispatch }, roomName) {
-      socket.emit("dispatch", { action: "joinRoom", data: roomName });
-      // console.log("room Joined", roomName);
-    },
+    // joinRoom({ commit, dispatch }, roomName) {
+    //   socket.emit("dispatch", { action: "joinRoom", data: roomName });
+    //   // console.log("room Joined", roomName);
+    // },
 
-    leaveRoom({ commit, dispatch }, roomName) {
-      socket.emit("disconnect", { action: "leaveRoom", data: roomName });
-    },
+    // leaveRoom({ commit, dispatch }, roomName) {
+    //   socket.emit("disconnect", { action: "leaveRoom", data: roomName });
+    // },
   },
 };
