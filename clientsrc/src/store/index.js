@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import {
   api
 } from "../axiosService";
+import { socketStore } from "./SocketStore";
 
 Vue.use(Vuex);
 
