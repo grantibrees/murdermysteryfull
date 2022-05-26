@@ -11,7 +11,6 @@ export default class Startup {
       "https://murdermysteryfull.herokuapp.com/",
       "https://grantignotusbrees.com/",
       "http://localhost:8080",
-//      "http://localhost:3000"
     ];
     let corsOptions = {
       origin: function (origin, callback) {
