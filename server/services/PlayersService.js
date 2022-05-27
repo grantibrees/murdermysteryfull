@@ -5,7 +5,7 @@ import { dbContext } from "../database/DbContext";
 class PlayersService {
 
   async getPlayerData(hackerName) {
-    let playerData = await dbContext.Players.findOne({
+    let playerData = await dbContext.Player.findOne({
       hackerName: hackerName
     });
     return playerData;
@@ -13,7 +13,7 @@ class PlayersService {
 
   async getAllPlayerData() {
     let filter = {}
-    let playerData = await dbContext.Players.find(filter);
+    let playerData = await dbContext.Player.find(filter);
     return playerData;
   }
 
@@ -23,7 +23,7 @@ class PlayersService {
         console.log(list)
         for (let i in list){
           console.log(list[i])
-          await dbContext.Players.create(list[i])
+          await dbContext.Player.create(list[i])
         }
     } catch (error) {
       console.error(error)
@@ -31,7 +31,7 @@ class PlayersService {
   }
 
   async updatePlayerData(sessionCode, body) {
-    await dbContext.player.findOneAndUpdate(
+    await dbContext.Player.findOneAndUpdate(
       { id: id },
       // { $pull: { player } },
       { new: true }

@@ -30,6 +30,9 @@ export default {
   },
 
   methods: {
+    gameStart(){
+      this.$store.dispatch("gameStart")
+    }
   },
 };
 </script>
