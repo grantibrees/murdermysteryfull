@@ -1,8 +1,10 @@
 <template>
   <div class="display container-fluid">
     <h1>DISPLAY VIEW</h1>
-    <mole v-if="moleState" />
-    <cyberPunk v-else :firstName="getFirstName" />
+    <div v-if="stateUpdate == 'update'">
+      <mole v-if="moleState" />
+      <cyberPunk v-else/>
+    </div>
   </div>
 </template>
 
@@ -14,56 +16,62 @@ import dropDown from "../components/DropDown.vue";
 export default {
   name: "Display",
   data() {
-    return{
-      isMole: false
-    }
+    return {
+      isMole: false,
+    };
+  },
+  methods:{
   },
 
   computed: {
+    stateUpdate(){
+      return this.$store.state.stateUpdate
+    },
+    
     moleState() {
-      return ( this.$store.state.player.mole ? this.isMole = true : this.isMole = false)
-      },
+      return this.$store.state.player.mole
+        ? (this.isMole = true)
+        : (this.isMole = false);
+    },
 
     getFirstName() {
-      return this.$store.state.player.firstName
+      return this.$store.state.player.firstName;
     },
 
     getPlayersArray() {
-      return this.$store.state.allPlayers
+      return this.$store.state.allPlayers;
     },
 
     getCurrentPhase() {
-      return this.$store.state.game.currentRoundNumber
+      return this.$store.state.game.currentRoundNumber;
     },
 
     getCurrentRound() {
-      return this.$store.state.game.currentPhaseNumber
-
+      return this.$store.state.game.currentPhaseNumber;
     },
 
     getTimer() {
       if (this.getCurrentPhase === 1) {
-        return this.$store.state.round.phase1.timer
+        return this.$store.state.round.phase1.timer;
       } else if (this.getCurrentPhase === 2) {
-        return this.$store.state.round.phase2.timer
+        return this.$store.state.round.phase2.timer;
       } else if (this.getCurrentPhase === 3) {
-        return this.$store.state.round.phase3.timer
+        return this.$store.state.round.phase3.timer;
       } else {
-        return 0
+        return 0;
       }
-    }
-
+    },
   },
 
-  async mounted(){
-    this.$store.dispatch("checkForPlayer")
+  async mounted() {
+    this.$store.dispatch("checkForPlayer");
     this.$store.dispatch("joinRoom", "murder");
   },
 
   components: {
-      cyberPunk,
-      mole
-  }
+    cyberPunk,
+    mole,
+  },
 };
 </script>
 

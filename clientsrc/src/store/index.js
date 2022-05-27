@@ -67,6 +67,7 @@ export default new Vuex.Store({
       gameQright: 0,
       gameQwrong: 0,
     },
+    stateUpdate: ""
 
   },
   mutations: {
@@ -78,6 +79,9 @@ export default new Vuex.Store({
     },
     setHackerName(state, name) {
       state.player.hackerName = name;
+    },
+    stateUpdate(state, update) {
+      state.stateUpdate = update;
     }
   },
   /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
@@ -123,12 +127,15 @@ export default new Vuex.Store({
         console.log(payload)
         if (this.state.player.hackerName == payload.hackerName) {
           console.log(this.state.player.hackerName + " is the mole")
+          commit("stateUpdate", "update")
           commit("setPlayer", payload)
           // dispatch a Swal message letting them know they are the mole
           // route them to the mole view
           // in the mole view, dropdowns that dispatch to "sympathistOffer"
         } else {
           console.log(this.state.player.hackerName + " is NOT the mole")
+          commit("stateUpdate", "update")
+          
           // dispatch swal to say "not the mole"
         }
       } catch (error) {
