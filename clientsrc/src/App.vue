@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-warning" id="app">
+  <div class="" id="app">
     <router-view />
   </div>
 </template>
@@ -11,7 +11,12 @@ export default {
   mounted() {
   },
   async beforeCreate() {
+        try {
+      this.$store.dispatch("initializeSocket");
+    } catch (err) {
+      console.log("the problem is in app");
       this.$router.push({ name: "Welcome" });
+    }
   },
   components: {},
 };

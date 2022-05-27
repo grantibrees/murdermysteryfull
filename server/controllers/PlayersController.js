@@ -11,6 +11,7 @@ export class PlayersController extends BaseController {
       // .get("/playerlist", this.getPlayerList)
 
       .put("/:id", this.updatePlayerData)
+      .put("/sympathist", this.offerSymp)
       // .put("/playerlist", this.updatePlayerList)
 
       .post("/post", this.postPlayers)
