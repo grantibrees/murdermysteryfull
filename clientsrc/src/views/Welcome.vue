@@ -13,8 +13,6 @@
 
 <script>
 import dropDown from "../components/DropDown";
-// update to pull list of players from back-end
-import json from "../rawdata/rawPlayerDataTest.json";
 
 export default {
   name: "Welcome",
@@ -27,6 +25,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("getAllPlayers");
+    this.$store.dispatch("joinRoom", "murder");
   },
   async beforeCreate(){
     this.$store.dispatch("checkForPlayer")

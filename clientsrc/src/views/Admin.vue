@@ -11,27 +11,30 @@ export default {
 
   data () {
     return {
-      currentRoundNumber: getCurrentRound,
-      currentPhaseNumber: getCurrentPhaseNumber
+      // currentRoundNumber: getCurrentRound,
+      // currentPhaseNumber: getCurrentPhaseNumber
     }
   },
 
   mounted() {
+    this.$store.dispatch("joinRoom", "murder");
   },
 
   computed: {
-    getCurrentRound() {
-      return this.$store.state.currentRoundNumber
-    },
-    getCurrentPhaseNumber() {
-      return this.$store.state.currentPhaseNumber
-    }
+    // getCurrentRound() {
+    //   return this.$store.state.currentRoundNumber
+    // },
+    // getCurrentPhaseNumber() {
+    //   return this.$store.state.currentPhaseNumber
+    // }
 
   },
 
   methods: {
     gameStart(){
-      this.$store.dispatch("gameStart")
+      this.$store.dispatch("gameStart", {
+        room: "murder"
+      })
     }
   },
 };

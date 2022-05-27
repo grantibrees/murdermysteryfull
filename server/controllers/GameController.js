@@ -24,11 +24,12 @@ export class GameController extends BaseController {
   async start(req, res, next){
     try {
       let data = await gameService.start();
-      // socketService.messageRoom(
-      //   req.body.roomName,
-      //   "gameStart",
-      //   req.body
-      // );
+      console.log(req.body),
+      socketService.messageRoom(
+        req.body.room,
+        "gameStart",
+        req.body
+      );
       return res.send(data);
     } catch (error) {
       next(error);
