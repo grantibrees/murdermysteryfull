@@ -14,7 +14,7 @@ export const socketStore = {
 
       // registers event listeners for emits from socketservice
       socket.on("gameStart", (payload) => {
-        console.log("worked", payload);
+        // console.log("worked", payload);
         dispatch("moleAlert", payload);
       });
 

@@ -120,7 +120,7 @@ export default new Vuex.Store({
 
     async moleAlert({ commit, dispatch }, payload){
       try {
-        if (this.state.player.hackerName == res.data.hackerName) {
+        if (this.state.player.hackerName == payload.hackerName) {
           console.log(this.state.player.hackerName + " is the mole")
           // dispatch a Swal message letting them know they are the mole
           // route them to the mole view
