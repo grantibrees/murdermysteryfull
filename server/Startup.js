@@ -7,22 +7,37 @@ import { RegisterControllers, Paths } from "../Setup";
 export default class Startup {
   static ConfigureGlobalMiddleware(app) {
     // NOTE Configure and Register Middleware
-    let whitelist = [
-      "https://murdermysteryfull.herokuapp.com/",
-      "https://grantignotusbrees.com/",
-      "http://grantignotusbrees.com/",
-      "http://localhost:8080",
-    ];
-    let corsOptions = {
-      origin: function (origin, callback) {
-        let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-        callback(null, originIsWhitelisted);
-      },
-      credentials: true,
-    };
+
+  let whitelist = [
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "https://murdermysteryfull.herokuapp.com/",
+    "https://grantignotusbrees.com/",
+  ]
+  const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+  let isDomainAllowed = whitelist.indexOf(req.header('Origin')) !== -1;
+  if (isDomainAllowed) {
+      // Enable CORS for this request
+      corsOptions = { origin: true }
+  } else {
+      // Disable CORS for this request
+      corsOptions = { origin: false }
+  }
+  callback(null, corsOptions)
+}
+
+    // let corsOptions = {
+    //   origin: function (origin, callback) {
+    //     let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    //     callback(null, originIsWhitelisted);
+    //   },
+    //   credentials: true,
+    // };
+
     app.use(helmet());
-    app.use(cors(corsOptions));
-    app.use(bp.json({ limit: "100mb" }));
+    app.use(cors(corsOptionsDelegate));
+    app.use(bp.json({ limit: "50mb" }));
 
   }
   static ConfigureRoutes(app) {

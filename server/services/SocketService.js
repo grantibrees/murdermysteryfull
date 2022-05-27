@@ -19,17 +19,17 @@ class SocketService {
   /**
    * @param {SocketIO.Socket} socket
    */
-  // async Authenticate(socket, bearerToken) {
-  //   try {
-  //     let user = await auth0provider.getUserInfoFromBearerToken(bearerToken);
-  //     socket["user"] = user;
-  //     socket.join(user.id);
-  //     socket.emit("AUTHENTICATED");
-  //     this.io.emit("UserConnected", user.id);
-  //   } catch (e) {
-  //     socket.emit("error", e);
-  //   }
-  // }
+  async Authenticate(socket, bearerToken) {
+    try {
+      let user = await auth0provider.getUserInfoFromBearerToken(bearerToken);
+      socket["user"] = user;
+      socket.join(user.id);
+      socket.emit("AUTHENTICATED");
+      this.io.emit("UserConnected", user.id);
+    } catch (e) {
+      socket.emit("error", e);
+    }
+  }
 
   /**
    * @param {SocketIO.Socket} socket
