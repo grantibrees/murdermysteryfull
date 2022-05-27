@@ -6,9 +6,16 @@
 
 <script>
 import Swal from "sweetalert2";
+import Text from "../rawdata/text.json";
 
 export default {
   name: "Sympathist",
+  data () {
+    return {
+      text: Text.sympathistText,
+    }
+  },
+
 };
 </script>
 
