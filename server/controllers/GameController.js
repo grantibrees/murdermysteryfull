@@ -28,7 +28,7 @@ export class GameController extends BaseController {
       socketService.messageRoom(
         req.body.room,
         "gameStart",
-        req.body
+        data
       );
       return res.send(data);
     } catch (error) {

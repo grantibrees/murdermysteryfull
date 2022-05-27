@@ -12,6 +12,7 @@ class GameService {
       { hackerName: mole.hackerName },
       { mole: false }
     )
+    updatedMole.mole = true
     // console.log(updatedMole)
     return updatedMole
   }
