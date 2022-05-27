@@ -11,7 +11,7 @@ export default {
   mounted() {
   },
   async beforeCreate() {
-        try {
+      try {
       this.$store.dispatch("initializeSocket");
     } catch (err) {
       console.log("the problem is in app");
