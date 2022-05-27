@@ -16,6 +16,8 @@ class GameService {
     }
   }
 
+  
+
   async addTriviaToPhase(){
     data = []
     for (let i = 0; i < 50; i++){

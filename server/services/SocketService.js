@@ -1,5 +1,5 @@
 import SocketIO from "socket.io";
-import auth0provider from "@bcwdev/auth0provider";
+// import auth0provider from "@bcwdev/auth0provider";
 class SocketService {
   io = SocketIO();
   /**
@@ -19,17 +19,17 @@ class SocketService {
   /**
    * @param {SocketIO.Socket} socket
    */
-  async Authenticate(socket, bearerToken) {
-    try {
-      let user = await auth0provider.getUserInfoFromBearerToken(bearerToken);
-      socket["user"] = user;
-      socket.join(user.id);
-      socket.emit("AUTHENTICATED");
-      this.io.emit("UserConnected", user.id);
-    } catch (e) {
-      socket.emit("error", e);
-    }
-  }
+  // async Authenticate(socket, bearerToken) {
+  //   try {
+  //     let user = await auth0provider.getUserInfoFromBearerToken(bearerToken);
+  //     socket["user"] = user;
+  //     socket.join(user.id);
+  //     socket.emit("AUTHENTICATED");
+  //     this.io.emit("UserConnected", user.id);
+  //   } catch (e) {
+  //     socket.emit("error", e);
+  //   }
+  // }
 
   /**
    * @param {SocketIO.Socket} socket
@@ -48,13 +48,13 @@ class SocketService {
 
   /**
    * Sends a direct message to a user
-   * @param {string} userId
+   * @param {string} hackerName
    * @param {string} eventName
    * @param {any} payload
    */
-  messageUser(userId, eventName, payload) {
+  messageUser(hackerName, eventName, payload) {
     try {
-      this.io.to(userId).emit(eventName, payload);
+      this.io.to(hackerName).emit(eventName, payload);
     } catch (e) { }
   }
 
