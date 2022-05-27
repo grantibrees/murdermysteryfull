@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import {
   api
 } from "../axiosService";
-import { socketStore } from "./SocketStore";
+//import { socketStore } from "./SocketStore";
 
 
 Vue.use(Vuex);
@@ -107,6 +107,6 @@ export default new Vuex.Store({
   },
 
   modules: {
-    socketStore,
+    //socketStore,
   },
 });

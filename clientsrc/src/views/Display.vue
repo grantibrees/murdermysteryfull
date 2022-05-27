@@ -29,6 +29,27 @@ export default {
 
     getPlayersArray() {
       return this.$store.state.allPlayers
+    },
+
+    getCurrentPhase() {
+      return this.$store.state.game.currentRoundNumber
+    },
+
+    getCurrentRound() {
+      return this.$store.state.game.currentPhaseNumber
+
+    },
+
+    getTimer() {
+      if (this.getCurrentPhase === 1) {
+        return this.$store.state.round.phase1.timer
+      } else if (this.getCurrentPhase === 2) {
+        return this.$store.state.round.phase2.timer
+      } else if (this.getCurrentPhase === 3) {
+        return this.$store.state.round.phase3.timer
+      } else {
+        return 0
+      }
     }
 
   },

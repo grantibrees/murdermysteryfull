@@ -9,14 +9,15 @@
 export default {
   name: "App",
   mounted() {
+    this.$router.push({ name: "Welcome" });
+
   },
   async beforeCreate() {
-        try {
-      this.$store.dispatch("initializeSocket");
-    } catch (err) {
-      console.log("the problem is in app");
-      this.$router.push({ name: "Welcome" });
-    }
+    // try {
+    //   this.$store.dispatch("initializeSocket");
+    // } catch (err) {
+    //   console.log("the problem is in app");
+    // }
   },
   components: {},
 };
@@ -33,7 +34,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #ffffff;
+  //color: #ffffff;
 }
 
 .slide-fade-enter-active {
