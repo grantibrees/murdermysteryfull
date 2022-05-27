@@ -9,13 +9,15 @@
 export default {
   name: "App",
   mounted() {
+
   },
   async beforeCreate() {
       try {
-      this.$store.dispatch("initializeSocket");
+        this.$store.dispatch("initializeSocket");
+        this.$router.push({ name: "Welcome" });
     } catch (err) {
-      console.log("the problem is in app");
-      this.$router.push({ name: "Welcome" });
+        console.log("the problem is in App");
+        this.$router.push({ name: "Welcome" });
     }
   },
   components: {},
