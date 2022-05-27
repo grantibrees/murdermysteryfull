@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import {
   api
 } from "../axiosService";
+import { socketStore } from "./SocketStore";
 
 
 Vue.use(Vuex);
@@ -10,10 +11,61 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // array of all players
+    //GAME
+    game: {
+      roundData: {},
+      currentRoundNumber: 0,
+      currentPhaseNumber: 0,
+      //playersDisplayList and identitiesList are for the Display view.
+      //these will act a lot like the Queue in the capstone project.
+      playersDisplayList: [],
+      // each object in the playersDisplayList array will look like this:
+      // firstName: "Grant",
+      // lastName: "Brees",
+      // hackerName: "RedDragon31",
+      // id: 1,
+      // identity1: "Redeye",
+      // identity2: "Ghost",
+      // roundEarnedVotes: 3,
+      // roundsWithPasses: [1,3],
+      // roundsWithFails: [2]
+      identitiesList: [],
+      // each object in the playersDisplayList array will look like this:
+      // identityName: "Redeye",
+      // identityOrder: 3,
+      // totalVoteCount: 13
+    },
+
+    //ROUND
+    // each round this object will get updated/overwritten with new data for that specific round
+    round: {
+      roundNumber: 0,
+      currentPhaseNumber: 0,
+      phase1: {
+        timer: 0,
+        triviaQuestions: []
+      },
+      phase2: {
+        timer: 0
+      },
+      phase3: {
+        timer: 0
+      },
+    },
+    
+    //PLAYERS
     allPlayers: [],
     // current player object
-    player: {},
+    player: {
+      isAPossibleMole: false,
+      mole: false,
+      roundQcount: 0,
+      roundQright: 0,
+      roundQwrong: 0,
+      gameQcount: 0,
+      gameQright: 0,
+      gameQwrong: 0,
+    },
 
   },
   mutations: {
@@ -52,5 +104,9 @@ export default new Vuex.Store({
         console.log(err)
       }
     },
+  },
+
+  modules: {
+    socketStore,
   },
 });
