@@ -174,6 +174,15 @@ export default new Vuex.Store({
       }
     },
 
+    async updatePlayer({ commit, dispatch }){
+      try {
+        let res = await api.put("/players/" + hackerName)
+        commit("setPlayer", res.data);
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
     async moleAlert({ commit, dispatch }, payload) {
       try {
         let moleName = payload.hackerName
