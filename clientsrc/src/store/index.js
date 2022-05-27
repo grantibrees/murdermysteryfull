@@ -53,7 +53,7 @@ export default new Vuex.Store({
         timer: 0
       },
     },
-    
+
     //PLAYERS
     allPlayers: [],
     // current player object
@@ -76,18 +76,18 @@ export default new Vuex.Store({
     setPlayer(state, player) {
       state.player = player;
     },
-    setHackerName(state, name){
+    setHackerName(state, name) {
       state.player.hackerName = name;
     }
   },
-/* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
+  /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
   actions: {
     //GAME
     async gameStart({ commit, dispatch }, payload) {
       try {
         //tells server to start game, set mole. res = mole player
         let res = await api.put("game/start" + payload.roomName, payload);
-        if (store.state.player.hackerName == res.data.hackerName){
+        if (store.state.player.hackerName == res.data.hackerName) {
           commit("setPlayer", res.data)
           console.log(store.state.player.hackerName + " is the mole")
           // dispatch a Swal message letting them know they are the mole
@@ -102,11 +102,11 @@ export default new Vuex.Store({
       }
     },
 
-    async sympathistOffer(){},
+    async sympathistOffer() { },
 
     //ROUND
 
-  
+
     //PLAYERS
     async getAllPlayers({ commit }) {
       try {
@@ -127,37 +127,38 @@ export default new Vuex.Store({
       }
     },
 
-    async setHackerNameCookie({commit}, hackerName) {
+    async setHackerNameCookie({ commit }, hackerName) {
       const d = new Date();
-      d.setTime(d.getTime() + (2*24*60*60*1000));
-      let expires = "expires="+ d.toUTCString();
+      d.setTime(d.getTime() + (2 * 24 * 60 * 60 * 1000));
+      let expires = "expires=" + d.toUTCString();
       document.cookie = "hackerName=" + hackerName + ";" + expires + ";path=/";
     },
 
     async checkForPlayer({ commit, dispatch }) {
       let c = document.cookie.indexOf('hackerName=');
-      if (c != -1){
+      if (c != -1) {
         dispatch("getHackerNameCookie")
         dispatch("getPlayer", this.state.player.hackerName)
-        router.push({ name: 'Display' })
+        if (router.currentRoute.name != 'Display')
+          router.push({ name: 'Display' })
       }
     },
 
-    async getHackerNameCookie({commit, dispatch}){
-        let name = "hackerName=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            let hackerName = c.substring(name.length, c.length)
-            commit("setHackerName", hackerName)
-          }
+    async getHackerNameCookie({ commit, dispatch }) {
+      let name = "hackerName=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
         }
-        return "";
+        if (c.indexOf(name) == 0) {
+          let hackerName = c.substring(name.length, c.length)
+          commit("setHackerName", hackerName)
+        }
+      }
+      return "";
     }
 
   },

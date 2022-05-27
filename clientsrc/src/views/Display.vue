@@ -54,6 +54,10 @@ export default {
 
   },
 
+  async mounted(){
+    this.$store.dispatch("checkForPlayer")
+  },
+
   components: {
       cyberPunk,
       mole

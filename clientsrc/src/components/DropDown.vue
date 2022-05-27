@@ -1,6 +1,10 @@
 <template>
   <div :class="dimensionsClass">
-    <b-dropdown-item @click="confirmPopUp(playerData.hackerName)" :key="playerData.id">{{ playerData.hackerName }}</b-dropdown-item>
+    <b-dropdown-item
+      @click="confirmPopUp(playerData.hackerName)"
+      :key="playerData.id"
+      >{{ playerData.hackerName }}</b-dropdown-item
+    >
   </div>
 </template>
 
@@ -10,48 +14,49 @@ import Swal from "sweetalert2";
 export default {
   name: "DropDown",
 
-  data () {
+  data() {
     return {
-      dimensionsClass: 'rm-my',
-    }
+      dimensionsClass: "rm-my",
+    };
   },
 
   computed: {
     getPlayersArray() {
-      return this.$store.state.allPlayers
-    }
+      return this.$store.state.allPlayers;
+    },
   },
 
   methods: {
     confirmPopUp(hackerName) {
       Swal.fire({
         title: hackerName,
-        text: 'r U suR3 7h12 12 U?',
+        text: "r U suR3 7h12 12 U?",
         showCancelButton: true,
-        confirmButtonText: 'y35, 1 4m very $m4rt',
-        cancelButtonText: 'H4H4H4H4H44H4',
+        confirmButtonText: "y35, 1 4m very $m4rt",
+        cancelButtonText: "H4H4H4H4H44H4",
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire({
-            title: 'GOOD, ON TO THE NEXT STAGE OF THE GAME',
+            title: "GOOD, ON TO THE NEXT STAGE OF THE GAME",
             showConfirmButton: false,
-            timer: 3000
-            }).then(() => {
-              this.$store.dispatch("getPlayer", hackerName);
-              this.$router.push({ name: "Display" });
-            })
+            timer: 1000,
+          }).then(() => {
+            this.$store.dispatch("getPlayer", hackerName);
+            this.$router.push({ name: "Display" });
+          });
         } else if (result.isDismissed) {
           Swal.fire({
-            title: 'FUCKIN REALLY?',
-            text: 'YOU SUCK, TRY AGAIN',
+            title: "FUCKIN REALLY?",
+            text: "YOU SUCK, TRY AGAIN",
             showConfirmButton: false,
-            timer: 4500
-            })
+            timer: 4500,
+          });
         }
-      })
-    }
+      });
+    },
+
   },
-  props: ["playerData"]
+  props: ["playerData"],
 };
 </script>
 
