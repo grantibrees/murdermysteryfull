@@ -95,15 +95,6 @@ export default new Vuex.Store({
 
     async sympathistOffer() { },
 
-    async socketTest({commit, dispatch, state}, payload){
-      try {
-        console.log("worked! ")
-        console.log(payload)
-      } catch (err) {
-        console.log(err)
-      }
-    },
-
     //ROUND
 
 
@@ -127,23 +118,22 @@ export default new Vuex.Store({
       }
     },
 
-    // async moleAlert({ commit, dispatch }, payload){
-    //   try {
-    //     console.log(payload)
-    //     if (this.state.player.hackerName == res.data.hackerName) {
-    //       console.log(this.state.player.hackerName + " is the mole")
-    //       // dispatch a Swal message letting them know they are the mole
-    //       // route them to the mole view
-    //       // in the mole view, dropdowns that dispatch to "sympathistOffer"
-    //     } else {
-    //       console.log(this.state.player.hackerName + " is NOT the mole")
-    //       // dispatch swal to say "not the mole"
-    //     }
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
+    async moleAlert({ commit, dispatch }, payload){
+      try {
+        if (this.state.player.hackerName == res.data.hackerName) {
+          console.log(this.state.player.hackerName + " is the mole")
+          // dispatch a Swal message letting them know they are the mole
+          // route them to the mole view
+          // in the mole view, dropdowns that dispatch to "sympathistOffer"
+        } else {
+          console.log(this.state.player.hackerName + " is NOT the mole")
+          // dispatch swal to say "not the mole"
+        }
+      } catch (error) {
+        console.error(error)
+      }
 
-    // },
+    },
 
 
     // in case a player leaves the browser
