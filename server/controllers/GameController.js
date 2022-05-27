@@ -6,6 +6,7 @@ export class GameController extends BaseController {
   constructor() {
     super("api/game");
     this.router
+      .get("/start", this.start)
       // .get("", this.getGameData)
       // .get("/identitylist", this.getIdenityList)
       // .get("/hermes/:id", this.getHermesText)
@@ -17,6 +18,15 @@ export class GameController extends BaseController {
       // .post("/post", this.uploadIdentitiesJsonData)
       .post("/post", this.uploadTriviaJsonData)
       // .post("/players", this.uploadPlayersJsonData)
+  }
+
+  async start(req, res, next){
+    try {
+      let data = await gameService.getGameData(req.params.roundNumber);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
   }
 
   async uploadTriviaJsonData(req, res, next) {
