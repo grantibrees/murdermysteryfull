@@ -1,6 +1,7 @@
 import express from "express";
 import BaseController from "../utilities/BaseController";
 import { gameService } from "../services/GameService";
+import socketService from "../services/SocketService";
 
 export class GameController extends BaseController {
   constructor() {
@@ -22,7 +23,12 @@ export class GameController extends BaseController {
 
   async start(req, res, next){
     try {
-      let data = await gameService.getGameData(req.params.roundNumber);
+      let data = await gameService.start(req.body.roomName);
+      socketService.messageRoom(
+        req.body.roomName,
+        "gameStart",
+        req.body
+      );
       return res.send(data);
     } catch (error) {
       next(error);
