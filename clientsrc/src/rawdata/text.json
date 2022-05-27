@@ -1,5 +1,5 @@
 {
-    "cyberpunkText": "You are not the mole! Here is what you need to know:",
-    "moleText": "You are the mole! Here is what you need to know",
-    "sympathistText": "Shhhh. The mole extends their hand to you, is it a deal?"
+    "cyberpunkText": ["You are not the mole! Here is what you need to know:", "Further dialogue", "even more dialogue"],
+    "moleText": ["You are the mole! Here is what you need to know"],
+    "sympathistText": ["Shhhh. The mole extends their hand to you, is it a deal?"]
 }

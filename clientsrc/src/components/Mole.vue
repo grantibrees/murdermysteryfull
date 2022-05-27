@@ -1,18 +1,19 @@
 <template>
   <div class="">
     <h1 class="">MOLE VIEW</h1>
+    <p>{{ text[0] }}</p>
   </div>
 </template>
 
 <script>
 import Swal from "sweetalert2";
-import Text from "../rawdata/text.json";
+import text from "../rawdata/text.json";
 
 export default {
   name: "Mole",
   data () {
     return {
-      text: Text.moleText,
+      text: text.moleText,
     }
   },
 

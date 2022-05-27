@@ -1,8 +1,6 @@
 <template>
   <div :class="dimensionsClass">
-
     <b-dropdown-item @click="confirmPopUp(playerData.hackerName)" :key="playerData.id">{{ playerData.hackerName }}</b-dropdown-item>
-
   </div>
 </template>
 
