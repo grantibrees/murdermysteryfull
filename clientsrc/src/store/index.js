@@ -176,7 +176,7 @@ export default new Vuex.Store({
 
     async updatePlayer({ commit, dispatch }){
       try {
-        let res = await api.put("/players/" + hackerName)
+        let res = await api.put("/players/" + this.state.player.hackerName)
         commit("setPlayer", res.data);
       } catch (err) {
         console.log(err)
