@@ -7,12 +7,12 @@ export class GameController extends BaseController {
   constructor() {
     super("api/game");
     this.router
-      .get("/start", this.start)
       // .get("", this.getGameData)
       // .get("/identitylist", this.getIdenityList)
       // .get("/hermes/:id", this.getHermesText)
 
       // .put("", this.updateGameData)
+      .put("/start", this.start)
       // .put("/round/:roundnum", this.updateRoundData)
       // .put("/round/:roundnum/:phasenum", this.updatePhaseData)
       // .put("/:updateidentitylist", this.updateIdentityList)
@@ -23,12 +23,12 @@ export class GameController extends BaseController {
 
   async start(req, res, next){
     try {
-      let data = await gameService.start(req.body.roomName);
-      socketService.messageRoom(
-        req.body.roomName,
-        "gameStart",
-        req.body
-      );
+      let data = await gameService.start();
+      // socketService.messageRoom(
+      //   req.body.roomName,
+      //   "gameStart",
+      //   req.body
+      // );
       return res.send(data);
     } catch (error) {
       next(error);

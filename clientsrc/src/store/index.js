@@ -78,6 +78,32 @@ export default new Vuex.Store({
   },
 /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
   actions: {
+    //GAME
+    async gameStart({ commit, dispatch }, payload) {
+      try {
+        //tells server to start game, set mole. res = mole player
+        let res = await api.put("game/start" + payload.roomName, payload);
+        if (store.state.player.hackerName == res.data.hackerName){
+          commit("setPlayer", res.data)
+          console.log(store.state.player.hackerName + " is the mole")
+          // dispatch a Swal message letting them know they are the mole
+          // route them to the mole view
+          // in the mole view, dropdowns that dispatch to "sympathistOffer"
+        } else {
+          console.log(store.state.player.hackerName + " is NOT the mole")
+          // dispatch swal to say "not the mole"
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    async sympathistOffer(){},
+
+    //ROUND
+
+  
+    //PLAYERS
     async getAllPlayers({ commit }) {
       try {
         let res = await api.get("/players")
@@ -96,14 +122,6 @@ export default new Vuex.Store({
       }
     },
 
-    async getGameStart({ commit }) {
-      try {
-        let res = await api.get("/game/start")
-        commit("getGameStart", res.data);
-      } catch (err) {
-        console.log(err)
-      }
-    },
   },
 
   modules: {

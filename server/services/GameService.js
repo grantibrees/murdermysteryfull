@@ -2,6 +2,17 @@ import { dbContext } from "../database/DbContext";
 import { BadRequest } from "../utilities/Errors";
 
 class GameService {
+
+  async start(){
+    let pCount = await dbContext.Player.count();
+    let random = Math.floor(Math.random() * pCount)
+    let mole = await dbContext.Player.findOne().skip(random)
+    mole = await dbContext.Player.findOneAndUpdate(
+      { hackerName: mole.hackerName },
+      { isMole: true }
+    )
+    return mole
+  }
   
   async uploadIdentities(data){
     try {

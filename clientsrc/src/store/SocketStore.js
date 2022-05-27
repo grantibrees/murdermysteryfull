@@ -12,10 +12,10 @@ export const socketStore = {
         console.log(data.message + " Lets HACK THE PLANET");
       });
 
-      // //registers event listeners for emits from socketservice
-      // socket.on("offerSympathist", (payload) => {
+      //registers event listeners for emits from socketservice
+      // socket.on("gameStart", (payload) => {
       //   // console.log("worked", payload);
-      //   dispatch("getQueue", payload);
+      //   dispatch("gameStart", payload);
       // });
 
       // socket.on("songScoreUpdated", (payload) => {
