@@ -1,11 +1,7 @@
-<template v-for="player in getPlayersArray">
+<template>
   <div class="display container-fluid">
     <h1>DISPLAY VIEW</h1>
-    <dropDown v-if="isMole" 
-      :playerData="player"
-      :key="player.id"
-    />
-    <mole v-if="isMole" />
+    <mole v-if="moleState" />
     <cyberPunk v-else :firstName="getFirstName" />
   </div>
 </template>
@@ -24,8 +20,8 @@ export default {
   },
 
   computed: {
-    isMole() {
-      return this.$store.state.player.mole
+    moleState() {
+      return ( this.$store.state.player.mole ? this.isMole = true : this.isMole = false)
       },
 
     getFirstName() {
