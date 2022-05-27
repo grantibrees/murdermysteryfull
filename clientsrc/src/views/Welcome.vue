@@ -28,6 +28,9 @@ export default {
   mounted() {
     this.$store.dispatch("getAllPlayers");
   },
+  async beforeCreate(){
+    this.$store.dispatch("checkForPlayer")
+  },
 
   components: {
       dropDown

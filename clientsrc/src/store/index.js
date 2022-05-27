@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import {
   api
 } from "../axiosService";
+import router from "../router";
 import { socketStore } from "./SocketStore";
 
 
@@ -75,6 +76,9 @@ export default new Vuex.Store({
     setPlayer(state, player) {
       state.player = player;
     },
+    setHackerName(state, name){
+      state.player.hackerName = name;
+    }
   },
 /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
   actions: {
@@ -113,14 +117,48 @@ export default new Vuex.Store({
       }
     },
 
-    async getPlayer({ commit }, hackerName) {
+    async getPlayer({ commit, dispatch }, hackerName) {
       try {
         let res = await api.get("/players/" + hackerName)
+        dispatch("setHackerNameCookie", hackerName)
         commit("setPlayer", res.data);
       } catch (err) {
         console.log(err)
       }
     },
+
+    async setHackerNameCookie({commit}, hackerName) {
+      const d = new Date();
+      d.setTime(d.getTime() + (2*24*60*60*1000));
+      let expires = "expires="+ d.toUTCString();
+      document.cookie = "hackerName=" + hackerName + ";" + expires + ";path=/";
+    },
+
+    async checkForPlayer({ commit, dispatch }) {
+      let c = document.cookie.indexOf('hackerName=');
+      if (c != -1){
+        dispatch("getHackerNameCookie")
+        dispatch("getPlayer", this.state.player.hackerName)
+        router.push({ name: 'Display' })
+      }
+    },
+
+    async getHackerNameCookie({commit, dispatch}){
+        let name = "hackerName=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            let hackerName = c.substring(name.length, c.length)
+            commit("setHackerName", hackerName)
+          }
+        }
+        return "";
+    }
 
   },
 
