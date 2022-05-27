@@ -15,7 +15,6 @@ export default {
       try {
         this.$store.dispatch("initializeSocket");
         this.$store.dispatch("joinRoom", "murder");
-        this.$router.push({ name: "Welcome" });
     } catch (err) {
         console.log("the problem is in App");
         this.$router.push({ name: "Welcome" });
