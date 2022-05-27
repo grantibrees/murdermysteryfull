@@ -9,19 +9,35 @@ class GameService {
         console.log(list)
         for (let i in list){
           console.log(list[i])
-          await dbContext.IdentityList.create(list[i])
+          await dbContext.TriviaQuestion.create(list[i])
         }
-        // identityName: { type: String },
-        // identityOrder: { type: Number },
-        // totalVoteCount: { type: Number }
-      
     } catch (error) {
       console.error(error)
     }
   }
 
+  async addTriviaToPhase(){
+    data = []
+    for (let i = 0; i < 50; i++){
+      let qCount = await dbContext.TriviaQuestion.count( {type: 'multiple'} );
+      let random = Math.floor(Math.random() * qCount)
+      let foundQuestion = await dbContext.TriviaQuestion.findOne().skip(random)
+      data.push(foundQuestion)
+    }
+    
+    // pick x numbers between 1 and qCount
+    // for each i[x], pull it, add it to data, put it in the deleted DB, delete it from the triva db
+    // 
+
+    let data = await dbContext.Game.find({ sessionCode: sessionCode });
+    return data;
+  }
+
+
+
+
   async getGameData(roundNumber) {
-    let data = await dbContext.Session.find({ sessionCode: sessionCode });
+    let data = await dbContext.Game.find({ sessionCode: sessionCode });
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }

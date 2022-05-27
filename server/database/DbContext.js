@@ -8,6 +8,7 @@ import PlayerSchema from "../models/Player";
 import PlayerDisplayListSchema from "../models/PlayerDisplayList";
 import IdentityOrderListSchema from "../models/IdentityOrderList";
 import HermesTextSchema from "../models/HermesText";
+import TriviaSchema from "../models/TriviaSchema";
 
 
 
@@ -22,6 +23,8 @@ class DbContext {
   Phase2 = mongoose.model("Phase2", Phase2Schema)
   Phase3 = mongoose.model("Phase3", Phase3Schema)
   HermesText = mongoose.model("Hermes", HermesTextSchema)
+  TriviaQuestion = mongoose.model("TriviaQuestion", TriviaSchema)
+  DeletedTriviaQ = mongoose.model("DeletedTriviaQ", TriviaSchema)
 
 }
 
