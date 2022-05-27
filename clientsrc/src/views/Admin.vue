@@ -1,13 +1,24 @@
 <template>
   <div class="Admin container-fluid">
     <div>
-      <b-button v-if="stateUpdate == ''" @click="gameStart" variant="outline-primary">Start</b-button>
+      <b-button
+        v-if="stateUpdate == ''"
+        @click="gameStart"
+        variant="outline-primary"
+        >Start</b-button
+      >
     </div>
     <div>
-      <b-button @click="gameStart" variant="outline-primary">Round</b-button>
+      <b-button @click="beginRound" variant="outline-primary"
+        >Round Start</b-button
+      >
+      <h1>Round {{ roundNumber }}</h1>
     </div>
     <div>
-      <b-button @click="gameStart" variant="outline-primary">Phase</b-button>
+      <b-button @click="nextPhase" variant="outline-primary"
+        >Phase Start</b-button
+      >
+      <h1>Phase {{ phaseNumber }}</h1>
     </div>
   </div>
 </template>
@@ -19,8 +30,8 @@ export default {
 
   data() {
     return {
-      // currentRoundNumber: getCurrentRound,
-      // currentPhaseNumber: getCurrentPhaseNumber
+      roundNumber: this.$store.state.game.currentRoundNumber,
+      phaseNumber: this.$store.state.game.currentPhaseNumber,
     };
   },
 
@@ -31,8 +42,14 @@ export default {
 
   computed: {
     stateUpdate() {
-      return this.$store.state.stateUpdate
-      },
+      return this.$store.state.stateUpdate;
+    },
+    currentRoundNumber() {
+      return this.$store.state.game.currentRoundNumber;
+    },
+    currentPhaseNumber() {
+      return this.$store.state.game.currentPhaseNumber;
+    },
   },
 
   methods: {
@@ -40,6 +57,12 @@ export default {
       this.$store.dispatch("gameStart", {
         room: "murder",
       });
+    },
+    beginRound() {
+      this.$store.dispatch("beginRound");
+    },
+    nextPhase() {
+      this.$store.dispatch("nextPhase", this.roundNumber, this.phaseNumber);
     },
   },
 };

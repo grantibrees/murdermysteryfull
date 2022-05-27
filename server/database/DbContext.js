@@ -19,8 +19,8 @@ class DbContext {
   PlayerList = mongoose.model("PlayerList", PlayerDisplayListSchema)
   IdentityList = mongoose.model("IdentityList", IdentityOrderListSchema)
   Phase1 = mongoose.model("Phase1", Phase1Schema)
-  Phase2 = mongoose.model("Phase2", Phase2Schema)
-  Phase3 = mongoose.model("Phase3", Phase3Schema)
+  Phase2 = mongoose.model("Phase2", Phase1Schema)
+  Phase3 = mongoose.model("Phase3", Phase1Schema)
   TriviaQuestion = mongoose.model("TriviaQuestion", TriviaSchema)
   DeletedTriviaQ = mongoose.model("DeletedTriviaQ", TriviaSchema)
 

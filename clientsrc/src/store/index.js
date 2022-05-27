@@ -13,8 +13,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     //GAME
-    game: {
-      roundData: {},
+    gameData: {
+      roundData: [],
       currentRoundNumber: 0,
       currentPhaseNumber: 0,
       //playersDisplayList and identitiesList are for the Display view.
@@ -39,17 +39,13 @@ export default new Vuex.Store({
 
     //ROUND
     // each round this object will get updated/overwritten with new data for that specific round
-    round: {
+    currentRoundData: {
       roundNumber: 0,
-      currentPhaseNumber: 0,
       phase1: {
         timer: 0,
         triviaQuestions: []
       },
       phase2: {
-        timer: 0
-      },
-      phase3: {
         timer: 0
       },
     },
@@ -82,7 +78,39 @@ export default new Vuex.Store({
     },
     stateUpdate(state, update) {
       state.stateUpdate = update;
-    }
+    },
+    setGameData(state, gameData) {
+      state.gameData = gameData;
+    },
+    setCurrentRoundData(state, gameData) {
+      state.currentRoundData = gameData;
+    },
+    updateRoundQcount(state){
+      state.player.roundQcount ++
+      state.player.gameQcount ++
+    },
+    updateRoundQright(state){
+      state.player.roundQright ++
+      state.player.gameQright ++
+    },
+    updateRoundQwrong(state){
+      state.player.roundQwrong ++
+      state.player.gameQwrong ++
+    },
+    resetRoundQs(state){
+      state.player.roundQcount = 0
+      state.player.roundQright = 0
+      state.player.roundQwrong = 0
+    },
+    updateRoundQcount(state){
+      state.player.roundQcount ++
+    },
+    updateRoundQright(state){
+      state.player.roundQright ++
+    },
+    updateRoundQwrong(state){
+      state.player.roundQwrong ++
+    },
   },
   /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
   actions: {
@@ -92,6 +120,30 @@ export default new Vuex.Store({
         //tells server to start game, set mole
         let res = await api.put("game/start", room);
         // console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async beginRound({ commit, dispatch }) {
+      try {
+        //tells server to start round, phase 1
+        let res = await api.get("round/start");
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async roundTrigger({ commit, dispatch }, payload) {
+      console.log(payload);
+      commit("setCurrentRoundData",payload.game.roundData[payload.game.currentRoundNumber-1])
+      commit("setGameData",payload.game)
+    },
+
+    async nextPhase({ commit, dispatch }, roundNum, phaseNum) {
+      try {
+        //tells server to start next phase
+        let res = await api.get("round/" + roundNum + "/" + phaseNum + "/start");
+        console.log(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -122,7 +174,7 @@ export default new Vuex.Store({
       }
     },
 
-    async moleAlert({ commit, dispatch }, payload){
+    async moleAlert({ commit, dispatch }, payload) {
       try {
         let moleName = payload.hackerName
         // console.log(payload)
@@ -133,7 +185,7 @@ export default new Vuex.Store({
         } else {
           console.log(this.state.player.hackerName + " is NOT the mole")
           commit("stateUpdate", "mole")
-        
+
         }
       } catch (error) {
         console.error(error)

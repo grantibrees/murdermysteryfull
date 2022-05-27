@@ -3,7 +3,20 @@ import { BadRequest } from "../utilities/Errors";
 
 class GameService {
 
-  async start(){
+  async createGameAndRound(){
+    let game = {
+      gameName: "murdermystery",
+      roundData: [],
+      currentRoundNumber: 0,
+      currentPhaseNumber: 0,
+      playersList: [],
+      identitiesList: [],
+    }
+    await dbContext.Game.create(game)
+    console.log("game created");
+  }
+
+  async createMole(){
     let pCount = await dbContext.Player.countDocuments();
     let random = Math.floor(Math.random() * pCount)
     // let possibleMoles = []
@@ -29,27 +42,6 @@ class GameService {
       console.error(error)
     }
   }
-
-  
-
-  async addTriviaToPhase(){
-    data = []
-    for (let i = 0; i < 50; i++){
-      let qCount = await dbContext.TriviaQuestion.count( {type: 'multiple'} );
-      let random = Math.floor(Math.random() * qCount)
-      let foundQuestion = await dbContext.TriviaQuestion.findOne().skip(random)
-      data.push(foundQuestion)
-    }
-    
-    // pick x numbers between 1 and qCount
-    // for each i[x], pull it, add it to data, put it in the deleted DB, delete it from the triva db
-    // 
-
-    let data = await dbContext.Game.find({ sessionCode: sessionCode });
-    return data;
-  }
-
-
 
 
   async getGameData(roundNumber) {
