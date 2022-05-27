@@ -120,9 +120,10 @@ export default new Vuex.Store({
 
     async moleAlert({ commit, dispatch }, payload){
       try {
+        console.log(payload)
         if (this.state.player.hackerName == payload.hackerName) {
           console.log(this.state.player.hackerName + " is the mole")
-          this.state.player.mole = true
+          commit("setPlayer", payload)
           // dispatch a Swal message letting them know they are the mole
           // route them to the mole view
           // in the mole view, dropdowns that dispatch to "sympathistOffer"

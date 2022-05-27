@@ -17,11 +17,16 @@ import dropDown from "../components/DropDown.vue";
 
 export default {
   name: "Display",
+  data() {
+    return{
+      isMole: false
+    }
+  },
 
   computed: {
     isMole() {
       return this.$store.state.player.mole
-    },
+      },
 
     getFirstName() {
       return this.$store.state.player.firstName
@@ -56,6 +61,7 @@ export default {
 
   async mounted(){
     this.$store.dispatch("checkForPlayer")
+    this.$store.dispatch("joinRoom", "murder");
   },
 
   components: {
