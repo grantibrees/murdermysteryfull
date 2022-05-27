@@ -43,5 +43,14 @@ export default new Vuex.Store({
         console.log(err)
       }
     },
+
+    async getGameStart({ commit }) {
+      try {
+        let res = await api.get("/game/start")
+        commit("getGameStart", res.data);
+      } catch (err) {
+        console.log(err)
+      }
+    },
   },
 });
