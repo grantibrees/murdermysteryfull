@@ -1,6 +1,6 @@
 <template>
   <div class="Admin container-fluid">
-    <b-button variant="outline-primary">Start</b-button>
+    <b-button @click="gameStart" variant="outline-primary">Start</b-button>
   </div>
 </template>
 
