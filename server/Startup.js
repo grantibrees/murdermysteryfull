@@ -11,7 +11,6 @@ export default class Startup {
     // NOTE Configure and Register Middleware
 
   let whitelist = [
-    "http://localhost:3000",
     "http://localhost:8080",
     "https://murdermysteryfull.herokuapp.com/",
     "https://grantignotusbrees.com/",
