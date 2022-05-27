@@ -1,12 +1,12 @@
 .DS_Store
 node_modules
 /dist
-authConfig.js
+# authConfig.js
 # *.json
 
 # local env files
-.env.local
-.env.*.local
+# .env.local
+# .env.*.local
 
 # Log files
 npm-debug.log*
