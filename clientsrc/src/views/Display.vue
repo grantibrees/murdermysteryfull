@@ -1,10 +1,14 @@
 <template>
   <div class="display container-fluid">
     <h1>DISPLAY VIEW</h1>
-    <div v-if="stateUpdate == 'update'">
+    <div v-if="stateUpdate == 'mole'">
       <mole v-if="moleState" />
       <cyberPunk v-else/>
     </div>
+    <div v-if="stateUpdate == 'trivia'">
+      <trivia />
+    </div>
+
   </div>
 </template>
 

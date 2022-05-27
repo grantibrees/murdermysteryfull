@@ -91,7 +91,7 @@ export default new Vuex.Store({
       try {
         //tells server to start game, set mole
         let res = await api.put("game/start", room);
-        console.log(res.data)
+        // console.log(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -124,19 +124,16 @@ export default new Vuex.Store({
 
     async moleAlert({ commit, dispatch }, payload){
       try {
-        console.log(payload)
-        if (this.state.player.hackerName == payload.hackerName) {
+        let moleName = payload.hackerName
+        // console.log(payload)
+        if (this.state.player.hackerName == moleName) {
           console.log(this.state.player.hackerName + " is the mole")
-          commit("stateUpdate", "update")
+          commit("stateUpdate", "mole")
           commit("setPlayer", payload)
-          // dispatch a Swal message letting them know they are the mole
-          // route them to the mole view
-          // in the mole view, dropdowns that dispatch to "sympathistOffer"
         } else {
           console.log(this.state.player.hackerName + " is NOT the mole")
-          commit("stateUpdate", "update")
-          
-          // dispatch swal to say "not the mole"
+          commit("stateUpdate", "mole")
+        
         }
       } catch (error) {
         console.error(error)
