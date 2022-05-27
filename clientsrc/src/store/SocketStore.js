@@ -1,4 +1,4 @@
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 
 let socket = {};
 
@@ -12,11 +12,11 @@ export const socketStore = {
         console.log(data.message + " Lets HACK THE PLANET");
       });
 
-      //registers event listeners for emits from socketservice
-      // socket.on("gameStart", (payload) => {
-      //   // console.log("worked", payload);
-      //   dispatch("gameStart", payload);
-      // });
+      // registers event listeners for emits from socketservice
+      socket.on("gameStart", (payload) => {
+        console.log("worked", payload);
+        // dispatch("gameStart", payload);
+      });
 
       // socket.on("songScoreUpdated", (payload) => {
       //   // console.log("song score updated", payload);

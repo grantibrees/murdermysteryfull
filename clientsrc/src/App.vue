@@ -14,6 +14,7 @@ export default {
   async beforeCreate() {
       try {
         this.$store.dispatch("initializeSocket");
+        this.$store.dispatch("joinRoom", "murder");
         this.$router.push({ name: "Welcome" });
     } catch (err) {
         console.log("the problem is in App");
