@@ -11,7 +11,7 @@ const Phase3Schema = new Schema(
     playersMission: []
   },
 
-  { timestamps: true, toJSON: { virtuals: true } }
+  // { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default Phase3Schema;

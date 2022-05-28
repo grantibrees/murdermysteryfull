@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
 const RoundSchema = new Schema(
   {
     roundNumber: { type: Number },
-    phase1Data: { type: Phase1 },
-    phase2Data: { type: Phase2 },
+    phase1Data: {},
+    phase2Data: {},
   },
-  { timestamps: true, toJSON: { virtuals: true } }
+  // { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default RoundSchema;

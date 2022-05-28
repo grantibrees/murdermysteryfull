@@ -30,19 +30,36 @@ class PlayersService {
     }
   }
 
-  async updatePlayerData(sessionCode, body) {
-    await dbContext.Player.findOneAndUpdate(
-      { id: id },
-      // { $pull: { player } },
-      { new: true }
+  async setIdentities(){
+    let players = await this.getAllPlayerData()
+    for(let i = 0, i < players.length, i++){
+      
+    }
+  }
+
+  async updatePlayerData(hackerName, body) {
+    let player = await dbContext.Player.findOne(
+      { hackerName: hackerName },
     );
-    let data = await dbContext.Session.findOneAndUpdate(
-      { id: id },
-      // { $addToSet: { queue: body } },
+
+      player.identity1 = body.identity1
+      player.identity2 = body.identity2
+      player.mole = body.mole
+      player.sympathist = body.sympathist
+      player.roundQcount = body.roundQcount
+      player.roundQright = body.roundQright
+      player.roundQwrong = body.roundQwrong
+      player.gameQcount = body.gameQcount
+      player.gameQright = body.gameQright
+      player.gameQwrong = body.gameQwrong
+
+    let data = await dbContext.Player.findOneAndUpdate(
+      {hackerName: hackerName},
+      player,
       { new: true }
     );
     if (!data) {
-      throw new BadRequest("Invalid ID");
+      throw new BadRequest("Invalid hackerName");
     }
     return data;
   }

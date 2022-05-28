@@ -8,15 +8,25 @@ export class PlayersController extends BaseController {
     this.router
       .get("", this.getAllPlayerData)
       .get("/:hackername", this.getPlayerData)
+      .get("/identity/:hackername", this.setIdentities)
       // .get("/playerlist", this.getPlayerList)
 
-      .put("/:id", this.updatePlayerData)
+      .put("/:hackerName", this.updatePlayerData)
+      
       // .put("/sympathist", this.offerSymp)
       // .put("/playerlist", this.updatePlayerList)
 
       .post("/post", this.postPlayers)
   }
 
+  async setIdentities(req, res, next){
+    try {
+      await playersService.setIdentities();
+      // res.send(playerData);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   async postPlayers(req, res, next) {
     try {
@@ -52,7 +62,7 @@ export class PlayersController extends BaseController {
   async updatePlayerData(req, res, next) {
     try {
       let data = await playersService.updatePlayerData(
-        req.params.id,
+        req.params.hackerName,
         req.body
       );
       return res.send({ data: data, message: "updated player" });

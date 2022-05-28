@@ -14,14 +14,14 @@ export class GameController extends BaseController {
       // .put("", this.updateGameData)
       .put("/start", this.start)
       // .put("/:updateidentitylist", this.updateIdentityList)
-      // .post("/post", this.uploadIdentitiesJsonData)
-      .post("/post", this.uploadTriviaJsonData)
+      .post("/identities", this.uploadIdentitiesJsonData)
+      .post("/trivia", this.uploadTriviaJsonData)
       // .post("/players", this.uploadPlayersJsonData)
   }
 
   async start(req, res, next){
     try {
-      await gameService.createGameAndRound();
+      await gameService.createGame();
       let data = await gameService.createMole();
       console.log(req.body),
       socketService.messageRoom(
@@ -35,6 +35,19 @@ export class GameController extends BaseController {
     }
   }
 
+  async uploadIdentitiesJsonData(req, res, next) {
+    try {
+      let payload = {
+        identitiesList: req.body.identitiesList
+      };
+      // console.log(payload)
+      await gameService.uploadIdentities(payload);
+      res.send("identities uploaded");
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async uploadTriviaJsonData(req, res, next) {
     try {
       let payload = {
@@ -42,19 +55,11 @@ export class GameController extends BaseController {
       };
       // console.log(payload)
       await gameService.uploadTrivia(payload);
-      res.send("Triva uploaded");
+      res.send("Trivia uploaded");
     } catch (error) {
       next(error)
     }
   }
-
-  async getGameData(req, res, next) {
-    try {
-      let data = await gameService.getGameData(req.params.roundNumber);
-      return res.send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
   
+
 }

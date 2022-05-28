@@ -12,13 +12,13 @@
       <b-button @click="beginRound" variant="outline-primary"
         >Round Start</b-button
       >
-      <h1>Round {{ roundNumber }}</h1>
+      <h1>Round {{ currentRoundNumber }}</h1>
     </div>
     <div>
       <b-button @click="nextPhase" variant="outline-primary"
         >Phase Start</b-button
       >
-      <h1>Phase {{ phaseNumber }}</h1>
+      <h1>Phase {{ currentPhaseNumber }}</h1>
     </div>
   </div>
 </template>
@@ -30,8 +30,9 @@ export default {
 
   data() {
     return {
-      roundNumber: this.$store.state.game.currentRoundNumber,
-      phaseNumber: this.$store.state.game.currentPhaseNumber,
+      gameData: {}
+      // roundNumber: currentRoundNumber,
+      // phaseNumber: currentPhaseNumber,
     };
   },
 
@@ -45,10 +46,10 @@ export default {
       return this.$store.state.stateUpdate;
     },
     currentRoundNumber() {
-      return this.$store.state.game.currentRoundNumber;
+      return this.$store.state.gameData.currentRoundNumber;
     },
     currentPhaseNumber() {
-      return this.$store.state.game.currentPhaseNumber;
+      return this.$store.state.gameData.currentPhaseNumber;
     },
   },
 
@@ -62,7 +63,7 @@ export default {
       this.$store.dispatch("beginRound");
     },
     nextPhase() {
-      this.$store.dispatch("nextPhase", this.roundNumber, this.phaseNumber);
+      this.$store.dispatch("nextPhase");
     },
   },
 };
