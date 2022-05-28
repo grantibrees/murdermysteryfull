@@ -27,7 +27,7 @@
             <b-col>Voting Total</b-col>
         </b-row>
         <div class="w-100"></div>  
-        <b-row v-for="identity in sortIdentityList" :key="identity.id">
+        <b-row v-for="identity in sortIdentityList(identitiesList)" :key="identity.id">
             <b-col>{{ identity.identityName }}</b-col>
             <b-col>{{ identity.totalVoteCount }}</b-col>
         </b-row>
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
 
 export default {
   name: "Grid",
@@ -44,18 +43,22 @@ export default {
   data() {
     return {
       border: 'border',
+      sortedIdentitiesList: [],
     };
   },
 
-  computed: {
-      sortIdentityList() {
-        if (this.identitiesList.length >= 1) {
-            let sorted = this.identitiesList.sort(
+  methods: {
+      sortIdentityList(arr) {
+        if (arr.length >= 1) {
+          let sorted = arr.sort(
             (a, b) => b.totalVoteCount - a.totalVoteCount
         );
-        return sorted;
+          console.log("SORTED", sorted)
+          this.sortedIdentitiesList = sorted;
+          return sorted;
         } else {
-        return this.identitiesList;
+          this.sortedIdentitiesList = arr;
+          return arr;
         }
       }
   },

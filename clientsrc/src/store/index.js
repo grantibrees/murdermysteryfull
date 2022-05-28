@@ -32,7 +32,7 @@ export default new Vuex.Store({
           roundsWithFails: [2]
         },
         { 
-          firstName: "Grant",
+          firstName: "Eman",
           lastName: "Pees",
           hackerName: "YellowMagpie24",
           id: 2,
@@ -171,6 +171,14 @@ export default new Vuex.Store({
     updateRoundQwrong(state){
       state.player.roundQwrong ++
     },
+    updateVoteCount(state, object) {
+      for (let i = 0; i < state.gameData.identitiesList.length; i++) {
+        if (state.gameData.identitiesList[i].identityName == object.identityName) {
+          state.gameData.identitiesList[i].totalVoteCount += object.totalVotes;
+          break;
+        }
+      }
+    }
   },
   /* Actions live in the store, they do the work of talking to the back-end, but it's also where logic happens*/
   actions: {

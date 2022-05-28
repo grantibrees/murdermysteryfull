@@ -15,11 +15,12 @@ export default {
   data() {
     return {
       identities: [],
+      sortMethod: false
     };
   },
 
   computed: {
-     getPhase2() {
+    getPhase2() {
       return this.$store.state.currentRoundData.phase2;
     },
 
@@ -30,7 +31,24 @@ export default {
     getPlayersDisplayList() {
       return this.$store.state.gameData.playersDisplayList;
     }
+
   },
+
+  method: {
+      sortIdentityList() {
+        let array = this.$store.state.gameData.identitiesList;
+        if (array >= 1) {
+          let sorted = array.sort(
+            (a, b) => b.totalVoteCount - a.totalVoteCount
+        );
+          console.log("SORTED", sorted)
+          return sorted;
+        } else {
+          return array;
+        }
+      }
+  },
+
 
   components: {
     grid
