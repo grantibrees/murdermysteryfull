@@ -1,70 +1,40 @@
 <template>
   <div class="display container-fluid">
     <h1>TV VIEW</h1>
-    <div>
-
-    </div>
+    <grid 
+    :playersDisplayList="getPlayersDisplayList"
+    :identitiesList="getIdentitiesList"
+    />
   </div>
 </template>
 <script>
+import grid from '../components/Grid.vue';
 
 export default {
-  name: "FileName" /*  */,
+  name: "TVDisplay",
   data() {
-    /* Data binding. */
     return {
       identities: [],
     };
   },
 
-  mounted() {
-    this.checkForActiveSong();
-  } /* Runs functions or sets vars on startup */,
-
   computed: {
-    identitiesList() {
-      return this.$store.state.hostTokens.accessToken;
-    }
-  } /* Pulls values from the store. Always the value of the method that's in it. The live value. Constant value, has to have a return in it, it's a getter. It's like a listener, listening to the state. It gets the state.
-      cars() {
-      return this.store.state.cars;
-  */,
-  actions: {
+     getPhase2() {
+      return this.$store.state.currentRoundData.phase2;
+    },
 
+    getIdentitiesList() {
+      return this.$store.state.gameData.identitiesList;
+    },
+
+    getPlayersDisplayList() {
+      return this.$store.state.gameData.playersDisplayList;
+    }
   },
 
-  methods: {
-    play() {
-      this.$store.dispatch("playCurrentSong");
-    },
-    playpause() {
-      this.spotifySDK.togglePlay().then(() => {
-        console.log("Toggled playback!");
-      });
-    },
-    changeSong(state) {
-      console.log(state);
-      if (state && state != this.currentState) {
-        this.play()
-      } else (state.paused == false && state.position > 1000); {
-        this.changingTrack = false;
-      }
-    },
-    moveFoodItemToTracker() {
-      this.$store.dispatch("moveFoodItemToTracker", { data: this.foodData, type: "common" })
-    },
-  }, /* Functions and functionality that make the component work. Commit and Dispatch here. 
-  Commit sets things to the State, while Dispatch calls a function that contacts the server*/
-  
-
-   components: {}
-    /* Pulls a components file as a child to reference. ÷*/,
-
-  props: [
-    "carData",
-  ] /* More like a parameter than anything. Gets passed to a View. In the template in the View will look like :carData="car" or "carData="{keys: values} */,
-
-  
+  components: {
+    grid
+  }
 };
 </script>
 

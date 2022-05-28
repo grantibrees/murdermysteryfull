@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Admin from '../views/Admin.vue'
 import Welcome from '../views/Welcome.vue'
 import Display from '../views/Display.vue'
+import TVDisplay from '../views/TVDisplay'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     name: 'Admin',
     component: Admin
   },
+  {
+    path: '/tvdisplay',
+    name: 'TVDisplay',
+    component: TVDisplay
+  }
 ]
 
 const router = new VueRouter({

@@ -52,18 +52,6 @@ export default {
     getPhase1() {
       return this.$store.state.currentRoundData.phase1;
     },
-
-    getPhase2() {
-      return this.$store.state.currentRoundData.phase2;
-    },
-
-    getIdentitiesList() {
-      return this.$store.state.gameData.identitiesList;
-    },
-
-    getDisplayList() {
-      return this.$store.state.gameData.playersDisplayList;
-    }
   },
 
   async mounted() {
