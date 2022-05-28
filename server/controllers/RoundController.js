@@ -18,14 +18,14 @@ export class RoundController extends BaseController {
 
   async beginRound(req, res, next){
     try {
-      let data = await roundService.beginRound();
+      let gameData = await roundService.beginRound();
       console.log(req.body),
       socketService.messageRoom(
         "murder",
         "roundStart",
-        data
+        gameData
       );
-      return res.send(data);
+      return res.send(gameData);
     } catch (error) {
       next(error);
     }
@@ -33,14 +33,14 @@ export class RoundController extends BaseController {
 
   async nextPhase(req, res, next){
     try {
-      let data = await roundService.nextPhase(req.params.roundNum, req.params.phaseNum);
+      let gameData = await roundService.nextPhase(req.params.roundNum, req.params.phaseNum);
       console.log(req.body),
       socketService.messageRoom(
         "murder",
         "phaseStart",
-        data
+        gameData
       );
-      return res.send(data);
+      return res.send(gameData);
     } catch (error) {
       next(error);
     }
