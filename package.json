@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "node index.js",
+    "debug": "node --inspect index.js",
     "start": "node index.js",
     "dev": "node index.js",
     "setup": "npm install"

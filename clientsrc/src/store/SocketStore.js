@@ -17,10 +17,10 @@ export const socketStore = {
         // console.log("worked", payload);
         dispatch("moleAlert", payload);
       });
-      socket.on("gameStart", (payload) => {
-        // console.log("worked", payload);
-        dispatch("identityAssign");
-      });
+      // socket.on("gameStart", (payload) => {
+      //   // console.log("worked", payload);
+      //   dispatch("identityAssign");
+      // });
 
       socket.on("roundStart", (payload) => {
         // console.log("worked", payload);
