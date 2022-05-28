@@ -7,8 +7,8 @@ export class GameController extends BaseController {
   constructor() {
     super("api/game");
     this.router
-      // .get("", this.getGameData)
-      // .get("/identitylist", this.getIdenityList)
+      .get("", this.getGameData)
+      .get("/identitylist", this.getIdentitiesList)
       // .get("/hermes/:id", this.getHermesText)
 
       // .put("", this.updateGameData)
@@ -30,6 +30,24 @@ export class GameController extends BaseController {
         data
       );
       return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getGameData(req, res, next){
+    try {
+      let gameData = await gameService.getGameData();
+      res.send(gameData);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getIdentitiesList(req, res, next) {
+    try {
+      let identitiesList = await gameService.getIdentitiesList();
+      res.send(identitiesList);
     } catch (error) {
       next(error);
     }

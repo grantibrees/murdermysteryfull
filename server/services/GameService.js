@@ -39,6 +39,16 @@ class GameService {
       return "something wrong with mole"
     }
   }
+  async getGameData(){
+    let game = await dbContext.Game.findOne({ _id: "62917cae3921a45ae316a97f" })
+    return game;
+  }
+
+  async getIdentitiesList(){
+    let filter = {}
+    let identitiesList = await dbContext.IdentityList.find(filter);
+    return identitiesList;
+  }
 
   async uploadIdentities(data) {
     try {
