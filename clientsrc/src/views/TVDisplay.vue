@@ -1,6 +1,12 @@
 <template>
   <div class="display container-fluid">
     <h1>TV VIEW</h1>
+    <vac :end-time="new Date().getTime() + getTimer">
+      <span
+        slot="process"
+        slot-scope="{ timeObj }">{{ `Time Left: ${timeObj.m}:${timeObj.s}` }}</span>
+      <span slot="finish">Done!</span>
+    </vac>
     <grid 
     :playersDisplayList="getPlayersDisplayList"
     :identitiesList="getIdentitiesList"
@@ -15,7 +21,6 @@ export default {
   data() {
     return {
       identities: [],
-      sortMethod: false
     };
   },
 
@@ -30,25 +35,21 @@ export default {
 
     getPlayersDisplayList() {
       return this.$store.state.gameData.playersDisplayList;
-    }
-
-  },
-
-  method: {
-      sortIdentityList() {
-        let array = this.$store.state.gameData.identitiesList;
-        if (array >= 1) {
-          let sorted = array.sort(
-            (a, b) => b.totalVoteCount - a.totalVoteCount
-        );
-          console.log("SORTED", sorted)
-          return sorted;
-        } else {
-          return array;
-        }
+    },
+    getTimer() {
+      let phase = this.$store.state.gameData.currentPhaseNumber;
+      let time1 = this.$store.state.currentRoundData.phase1.timer;
+      let time2 = this.$store.state.currentRoundData.phase2.timer;
+      console.log("WORKS", phase, time1, time2)
+      if (phase == 1) {
+        return this.$store.state.currentRoundData.phase1.timer;
+      } else if (phase == 2) {
+        return this.$store.state.currentRoundData.phase2.timer;       
+      } else {
+        return this.timer = 0;
       }
+    },
   },
-
 
   components: {
     grid

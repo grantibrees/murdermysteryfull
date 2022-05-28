@@ -10,8 +10,10 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import vueAwesomeCountdown from 'vue-awesome-countdown'
 // Make bootstrap avaiable throughout the project
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
+Vue.use(vueAwesomeCountdown, 'vac')
 
 Vue.use(Auth0Plugin, {
   domain,

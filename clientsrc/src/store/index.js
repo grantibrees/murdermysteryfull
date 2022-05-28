@@ -16,7 +16,7 @@ export default new Vuex.Store({
     gameData: {
       roundData: [],
       currentRoundNumber: 0,
-      currentPhaseNumber: 0,
+      currentPhaseNumber: 1,
       //playersDisplayList and identitiesList are for the Display view.
       //these will act a lot like the Queue in the capstone project.
       playersDisplayList: [
@@ -102,7 +102,7 @@ export default new Vuex.Store({
     currentRoundData: {
       roundNumber: 0,
       phase1: {
-        timer: 0,
+        timer: 300000,
         triviaQuestions: []
       },
       phase2: {

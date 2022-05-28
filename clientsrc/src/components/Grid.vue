@@ -3,7 +3,7 @@
     <h1 class="">DA GRID</h1>
     <b-container fluid class="bv-example-row">
         <b-row>
-            <b-col>Hacker Alias ("Real" Name)/Identity1/Identity2</b-col>
+            <b-col>Hacker Alias ("Real" Name)</b-col>
             <b-col>Identity 1</b-col>
             <b-col>Identity 2</b-col>
             <b-col>The Rounds You Passed</b-col>
@@ -53,7 +53,6 @@ export default {
           let sorted = arr.sort(
             (a, b) => b.totalVoteCount - a.totalVoteCount
         );
-          console.log("SORTED", sorted)
           this.sortedIdentitiesList = sorted;
           return sorted;
         } else {
