@@ -50,7 +50,7 @@ export default {
     },
 
     getPhase1() {
-      return this.$store.state.round.phase1;
+      return this.$store.state.currentRoundData.phase1;
     },
 
     getPhase2() {

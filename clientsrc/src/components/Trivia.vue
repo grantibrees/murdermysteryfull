@@ -54,10 +54,10 @@ export default {
         cancelButtonText: "NAH I WANT TO PICK ANOTHER",
       }).then((result) => {
         if (result.isConfirmed) {
-//            commit("updateRoundQCount")
+            this.$store.commit("updateRoundQcount")
           if (this.phase1.triviaQuestions[this.question].correct_answer == triviaChoice) {
             // socket player state
- //           commit("updateRoundQRight")
+            this.$store.commit("updateRoundQright")
             Swal.fire({
               icon: "success",
               title: "Correct!",
@@ -71,7 +71,7 @@ export default {
               showConfirmButton: false,
               timer: 1500
             })
-  //          commit("updateRoundQWrong")
+            this.$store.commit("updateRoundQwrong")
           }
           // check if last question in the array
           if (this.question < this.phase1.triviaQuestions.length - 1) {
