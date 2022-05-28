@@ -28,9 +28,9 @@ export const socketStore = {
         dispatch("phaseTrigger", payload);
       });
 
-      // socket.on("phaseStart", (payload) => {
+      // socket.on("identityAssign", (payload) => {
       //   // console.log("worked", payload);
-      //   dispatch("phaseTrigger", payload);
+      //   dispatch("playerUpdateTrigger");
       // });
 
     },

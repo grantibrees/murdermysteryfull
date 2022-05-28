@@ -245,9 +245,9 @@ export default new Vuex.Store({
       }
     },
 
-    async updatePlayer({ commit, dispatch }){
+    async updatePlayer({ commit, dispatch, state}){
       try {
-        let res = await api.put("/players/" + this.state.player.hackerName, this.state.player)
+        let res = await api.put("/players/" + state.player.hackerName, state.player)
         commit("setPlayer", res.data);
       } catch (err) {
         console.log(err)
@@ -265,12 +265,22 @@ export default new Vuex.Store({
         } else {
           console.log(this.state.player.hackerName + " is NOT the mole")
           commit("stateUpdate", "mole")
-
         }
+        dispatch("identityAssign", moleName)
       } catch (error) {
         console.error(error)
       }
 
+    },
+
+    async identityAssign( {commit, dispatch, state }, hackerName){
+      try {
+        await api.get("/players/identity/" + hackerName)
+        console.log("identities set");
+        dispatch("getPlayer", hackerName)
+      } catch (error) {
+        console.error(error)
+      }
     },
 
 
