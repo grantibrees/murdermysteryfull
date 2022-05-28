@@ -29,7 +29,7 @@ const PlayerSchema = new Schema(
     // roundsWithPasses: [],
     // roundsWithFails: []
   },
-  { timestamps: true, toJSON: { virtuals: true } }
+  // { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default PlayerSchema;

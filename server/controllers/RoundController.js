@@ -7,7 +7,7 @@ export class RoundController extends BaseController {
   constructor() {
     super("api/round");
     this.router
-      .get("/:roundNum", this.getRoundData)
+      // .get("/:roundNum", this.getRoundData)
       // .get("/:roundnum/:phasenum", this.getPhaseData)
       .get("/start", this.beginRound)
       .get("/:roundNum/:phaseNum", this.nextPhase)
@@ -19,7 +19,7 @@ export class RoundController extends BaseController {
   async beginRound(req, res, next){
     try {
       let gameData = await roundService.beginRound();
-      console.log(req.body),
+      // console.log(req.body),
       socketService.messageRoom(
         "murder",
         "roundStart",
@@ -33,8 +33,11 @@ export class RoundController extends BaseController {
 
   async nextPhase(req, res, next){
     try {
-      let gameData = await roundService.nextPhase(req.params.roundNum, req.params.phaseNum);
-      console.log(req.body),
+      let r = req.params.roundNum
+      let p = req.params.phaseNum
+      console.log("params: "+ r + " " + p);
+      let gameData = await roundService.nextPhase(r,p);
+      console.log("gameData from controller: " +gameData);
       socketService.messageRoom(
         "murder",
         "phaseStart",
@@ -46,13 +49,5 @@ export class RoundController extends BaseController {
     }
   }
 
-  async getRoundData(req, res, next) {
-    try {
-      let data = await gameService.getRoundData(req.params.roundNumber);
-      return res.send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
-  
+
 }

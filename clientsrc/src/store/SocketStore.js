@@ -24,14 +24,14 @@ export const socketStore = {
       });
 
       socket.on("phaseStart", (payload) => {
-        // console.log("worked", payload);
+        console.log("worked", payload);
         dispatch("phaseTrigger", payload);
       });
-      
-      socket.on("phaseStart", (payload) => {
-        // console.log("worked", payload);
-        dispatch("phaseTrigger", payload);
-      });
+
+      // socket.on("phaseStart", (payload) => {
+      //   // console.log("worked", payload);
+      //   dispatch("phaseTrigger", payload);
+      // });
 
     },
     joinRoom({ commit, dispatch }, roomName) {
