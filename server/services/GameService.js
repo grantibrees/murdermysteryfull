@@ -44,11 +44,11 @@ class GameService {
     return game;
   }
 
-  async getIdentitiesList(){
-    let filter = {}
-    let identitiesList = await dbContext.IdentityList.find(filter);
-    return identitiesList;
-  }
+  // async getIdentitiesList(){
+  //   let filter = {}
+  //   let identitiesList = await dbContext.IdentityList.find(filter);
+  //   return identitiesList;
+  // }
 
   async uploadIdentities(data) {
     try {
