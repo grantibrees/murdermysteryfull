@@ -7,8 +7,8 @@ export class PlayersController extends BaseController {
     super("api/players");
     this.router
       .get("", this.getAllPlayerData)
+      .get("/identity", this.setIdentities)
       .get("/:hackername", this.getPlayerData)
-      .get("/identity/:hackername", this.setIdentities)
       // .get("/playerlist", this.getPlayerList)
 
       .put("/:hackerName", this.updatePlayerData)
@@ -19,28 +19,6 @@ export class PlayersController extends BaseController {
       .post("/post", this.postPlayers)
   }
 
-  async setIdentities(req, res, next){
-    try {
-      await playersService.setIdentities();
-      // res.send(playerData);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async postPlayers(req, res, next) {
-    try {
-      let payload = {
-        players: req.body.players
-      };
-      // console.log(payload)
-      await playersService.uploadPlayers(payload);
-      res.send("Players uploaded");
-    } catch (error) {
-      next(error)
-    }
-  }
-
   async getAllPlayerData(req, res, next) {
     try {
       let playerData = await playersService.getAllPlayerData();
@@ -49,11 +27,20 @@ export class PlayersController extends BaseController {
       next(error);
     }
   }
-  
+
   async getPlayerData(req, res, next) {
     try {
       let playerData = await playersService.getPlayerData(req.params.hackername);
       res.send(playerData);
+    } catch (error) {
+      next(error);
+    }
+  }
+  
+  async setIdentities(req, res, next){
+    try {
+      await playersService.setIdentities();
+      res.send("hit player contr");
     } catch (error) {
       next(error);
     }
@@ -68,6 +55,20 @@ export class PlayersController extends BaseController {
       return res.send({ data: data, message: "updated player" });
     } catch (error) {
       console.error(error);
+    }
+  }
+
+
+  async postPlayers(req, res, next) {
+    try {
+      let payload = {
+        players: req.body.players
+      };
+      // console.log(payload)
+      await playersService.uploadPlayers(payload);
+      res.send("Players uploaded");
+    } catch (error) {
+      next(error)
     }
   }
 }

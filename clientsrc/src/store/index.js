@@ -146,6 +146,12 @@ export default new Vuex.Store({
     setCurrentRoundData(state, gameData) {
       state.currentRoundData = gameData;
     },
+    updateIdentitesList(state, data){
+      state.identitiesList = data;
+    },
+    updatePlayersDisplayList(state, data){
+      state.playersDisplayList = data;
+    },
     updateRoundQcount(state){
       state.player.roundQcount ++
       state.player.gameQcount ++
@@ -181,8 +187,19 @@ export default new Vuex.Store({
         //tells server to start game, set mole
         let res = await api.put("game/start", room);
         // console.log(res.data)
+        // console.log("going on to identityAssign");
+        // dispatch("identityAssign")
       } catch (err) {
         console.log(err)
+      }
+    },
+    async identityAssign({ commit }){
+      try {
+        let res = await api.get("players/identity")
+        console.log(res.data)
+        console.log("identities set");
+      } catch (error) {
+        console.error(error)
       }
     },
     async beginRound({ commit, dispatch }) {
@@ -266,21 +283,10 @@ export default new Vuex.Store({
           console.log(this.state.player.hackerName + " is NOT the mole")
           commit("stateUpdate", "mole")
         }
-        dispatch("identityAssign", moleName)
       } catch (error) {
         console.error(error)
       }
 
-    },
-
-    async identityAssign( {commit, dispatch, state }, hackerName){
-      try {
-        await api.get("/players/identity/" + hackerName)
-        console.log("identities set");
-        dispatch("getPlayer", hackerName)
-      } catch (error) {
-        console.error(error)
-      }
     },
 
 
