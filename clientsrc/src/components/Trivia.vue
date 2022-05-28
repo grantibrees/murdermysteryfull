@@ -1,10 +1,10 @@
 <template>
   <div class="">
     <h1>Trivia</h1>
-        <p>{{ phase1.triviaQuestions[question].category }}</p>
-        <p>{{ phase1.triviaQuestions[question].question }}</p>
+        <p>{{ phase1Data.questions[question].category }}</p>
+        <p>{{ phase1Data.qestions[question].question }}</p>
         <b-button @click="confirmPopUp(i)" 
-        v-for="i in randomizeTriviaAnswers(phase1.triviaQuestions[question].correct_answer, phase1.triviaQuestions[question].incorrect_answers)" 
+        v-for="i in randomizeTriviaAnswers(phase1Data.questions[question].correct_answer, phase1Data.questions[question].incorrect_answers)" 
         :key="i" >
         {{ i }}
         </b-button>
@@ -55,7 +55,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
             this.$store.commit("updateRoundQcount")
-          if (this.phase1.triviaQuestions[this.question].correct_answer == triviaChoice) {
+          if (this.phase1Data.questions[this.question].correct_answer == triviaChoice) {
             // socket player state
             this.$store.commit("updateRoundQright")
             Swal.fire({
@@ -74,7 +74,7 @@ export default {
             this.$store.commit("updateRoundQwrong")
           }
           // check if last question in the array
-          if (this.question < this.phase1.triviaQuestions.length - 1) {
+          if (this.question < this.phase1Data.questions.length - 1) {
             this.question++;
           } else {
             Swal.fire({
@@ -92,7 +92,7 @@ export default {
      
   },
 
-  props: ["phase1"]
+  props: ["phase1Data"]
 };
 </script>
 

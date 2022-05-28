@@ -1,12 +1,12 @@
 <template>
   <div class="display container-fluid">
     <h1>DISPLAY VIEW</h1>
-    <div v-if="stateUpdate == 'update'">
+    <div v-if="stateUpdate == 'mole'">
       <mole v-if="moleState" :firstName="getFirstName" />
       <cyberPunk v-else :firstName="getFirstName" />
     </div>
     <div v-if="stateUpdate == 'trivia'">
-      <trivia :phase1="getPhase1" />
+      <trivia :phase1Data="getPhase1" />
     </div>
     <div v-if="stateUpdate == 'voting'">
       <h2>VOTING TIM3</h2>
@@ -56,7 +56,7 @@ export default {
     },
 
     getPhase1() {
-      return this.$store.state.currentRoundData.phase1;
+      return this.$store.state.currentRoundData.phase1Data;
     },
 
     getPlayersArray() {

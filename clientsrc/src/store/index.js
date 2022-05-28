@@ -16,7 +16,7 @@ export default new Vuex.Store({
     gameData: {
       roundData: [],
       currentRoundNumber: 0,
-      currentPhaseNumber: 1,
+      currentPhaseNumber: 0,
       //playersDisplayList and identitiesList are for the Display view.
       //these will act a lot like the Queue in the capstone project.
       playersDisplayList: [
@@ -101,11 +101,11 @@ export default new Vuex.Store({
     // each round this object will get updated/overwritten with new data for that specific round
     currentRoundData: {
       roundNumber: 0,
-      phase1: {
-        timer: 300000,
+      phase1Data: {
+        timer: 0,
         triviaQuestions: []
       },
-      phase2: {
+      phase2Data: {
         timer: 0
       },
     },
@@ -239,10 +239,17 @@ export default new Vuex.Store({
       }
     },
 
-    async phaseTrigger({ commit, dispatch }, payload){
+    async phaseTrigger({ commit, dispatch, state }, payload){
       let roundIndex = payload.currentRoundNumber-1
       commit("setGameData", payload)
       commit("setCurrentRoundData", payload.roundData[roundIndex])
+      if(state.gameData.currentPhaseNumber == 1){
+        commit("stateUpdate", "trivia")
+      }else if(state.gameData.currentPhaseNumber == 2){
+        commit("stateUpdate", "voting")
+      }else{
+        commit("stateUpdate", "mole")
+      }
     },
 
     async sympathistOffer() { },
