@@ -37,7 +37,7 @@ export class RoundController extends BaseController {
       let p = req.params.phaseNum
       console.log("params: "+ r + " " + p);
       let gameData = await roundService.nextPhase(r,p);
-      console.log("gameData from controller: " +gameData);
+      // console.log("gameData from controller: " +gameData);
       socketService.messageRoom(
         "murder",
         "phaseStart",

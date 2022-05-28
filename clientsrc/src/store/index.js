@@ -216,8 +216,8 @@ export default new Vuex.Store({
 
     async phaseTrigger({ commit, dispatch }, payload){
       let roundIndex = payload.currentRoundNumber-1
-      commit("setCurrentRoundData", payload.roundData[roundIndex])
       commit("setGameData", payload)
+      commit("setCurrentRoundData", payload.roundData[roundIndex])
     },
 
     async sympathistOffer() { },
