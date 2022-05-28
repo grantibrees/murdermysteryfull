@@ -44,7 +44,44 @@ export default new Vuex.Store({
       currentPhaseNumber: 0,
       phase1: {
         timer: 0,
-        triviaQuestions: []
+        triviaQuestions: [
+          {
+              "category": "Entertainment: Board Games",
+              "type": "multiple",
+              "difficulty": "easy",
+              "question": "Carcassonne is based on which French town?",
+              "correct_answer": "Carcassonne",
+              "incorrect_answers": [
+                  "Paris",
+                  "Marseille",
+                  "Clermont-Ferrand"
+              ]
+          },
+          {
+              "category": "Entertainment: Board Games",
+              "type": "multiple",
+              "difficulty": "easy",
+              "question": "How many dice are used in the game of Yahtzee?",
+              "correct_answer": "Five",
+              "incorrect_answers": [
+                  "Four",
+                  "Six",
+                  "Eight"
+              ]
+          },
+          {
+              "category": "Entertainment: Board Games",
+              "type": "multiple",
+              "difficulty": "easy",
+              "question": "How many pieces are there on the board at the start of a game of chess?",
+              "correct_answer": "32",
+              "incorrect_answers": [
+                  "16",
+                  "20",
+                  "36"
+              ]
+          },
+        ]
       },
       phase2: {
         timer: 0
@@ -67,7 +104,7 @@ export default new Vuex.Store({
       gameQright: 0,
       gameQwrong: 0,
     },
-    stateUpdate: ""
+    stateUpdate: "trivia"
 
   },
   mutations: {

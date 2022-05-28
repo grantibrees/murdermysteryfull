@@ -2,8 +2,14 @@
   <div class="display container-fluid">
     <h1>DISPLAY VIEW</h1>
     <div v-if="stateUpdate == 'update'">
-      <mole v-if="moleState" />
-      <cyberPunk v-else/>
+      <mole v-if="moleState" :firstName="getFirstName" />
+      <cyberPunk v-else :firstName="getFirstName" />
+    </div>
+    <div v-if="stateUpdate == 'trivia'">
+      <trivia :phase1="getPhase1" />
+    </div>
+    <div v-if="stateUpdate == 'voting'">
+      <voting :phase2="getPhase2" />
     </div>
   </div>
 </template>
@@ -11,7 +17,8 @@
 <script>
 import cyberPunk from "../components/Cyberpunk.vue";
 import mole from "../components/Mole.vue";
-import dropDown from "../components/DropDown.vue";
+import trivia from "../components/Trivia.vue";
+import voting from "../components/Voting.vue";
 
 export default {
   name: "Display",
@@ -38,29 +45,13 @@ export default {
       return this.$store.state.player.firstName;
     },
 
-    getPlayersArray() {
-      return this.$store.state.allPlayers;
+    getPhase1() {
+      return this.$store.state.round.phase1;
     },
 
-    getCurrentPhase() {
-      return this.$store.state.game.currentRoundNumber;
-    },
-
-    getCurrentRound() {
-      return this.$store.state.game.currentPhaseNumber;
-    },
-
-    getTimer() {
-      if (this.getCurrentPhase === 1) {
-        return this.$store.state.round.phase1.timer;
-      } else if (this.getCurrentPhase === 2) {
-        return this.$store.state.round.phase2.timer;
-      } else if (this.getCurrentPhase === 3) {
-        return this.$store.state.round.phase3.timer;
-      } else {
-        return 0;
-      }
-    },
+    getPhase2() {
+      return this.$store.state.round.phase2;
+    }
   },
 
   async mounted() {
@@ -71,6 +62,8 @@ export default {
   components: {
     cyberPunk,
     mole,
+    trivia,
+    voting
   },
 };
 </script>
