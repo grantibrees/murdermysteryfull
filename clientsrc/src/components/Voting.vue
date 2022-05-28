@@ -20,7 +20,10 @@ export default {
 
   },
 
-  props: ["firstName"]
+  props: [
+    "displayList",
+    "identitiesList"
+  ]
 };
 </script>
 

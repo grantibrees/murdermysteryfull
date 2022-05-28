@@ -19,7 +19,41 @@ export default new Vuex.Store({
       currentPhaseNumber: 0,
       //playersDisplayList and identitiesList are for the Display view.
       //these will act a lot like the Queue in the capstone project.
-      playersDisplayList: [],
+      playersDisplayList: [
+        { 
+          firstName: "Grant",
+          lastName: "Brees",
+          hackerName: "RedDragon31",
+          id: 1,
+          identity1: "Redeye",
+          identity2: "Ghost",
+          roundEarnedVotes: 6,
+          roundsWithPasses: [1,3],
+          roundsWithFails: [2]
+        },
+        { 
+          firstName: "Grant",
+          lastName: "Pees",
+          hackerName: "YellowMagpie24",
+          id: 2,
+          identity1: "Redeye",
+          identity2: "Cloak",
+          roundEarnedVotes: 3,
+          roundsWithPasses: [1,3],
+          roundsWithFails: [5]
+        },
+        { 
+          firstName: "Grant",
+          lastName: "Bees",
+          hackerName: "PurpleKoiFish31",
+          id: 3,
+          identity1: "Glassknife",
+          identity2: "Ironwire",
+          roundEarnedVotes: 5,
+          roundsWithPasses: [1,3],
+          roundsWithFails: [3]
+        },
+      ],
       // each object in the playersDisplayList array will look like this:
       // firstName: "Grant",
       // lastName: "Brees",
@@ -30,7 +64,33 @@ export default new Vuex.Store({
       // roundEarnedVotes: 3,
       // roundsWithPasses: [1,3],
       // roundsWithFails: [2]
-      identitiesList: [],
+      identitiesList: [
+        {
+          identityName: "Redeye",
+          identityOrder: 3,
+          totalVoteCount: 5 
+        },
+        {
+          identityName: "Ironwire",
+          identityOrder: 1,
+          totalVoteCount: 6
+        },
+        {
+          identityName: "Glassknife",
+          identityOrder: 2,
+          totalVoteCount: 10
+        },
+        {
+          identityName: "Ghost",
+          identityOrder: 4,
+          totalVoteCount: 13
+        },
+        {
+          identityName: "Cloak",
+          identityOrder: 5,
+          totalVoteCount: 9
+        },
+      ],
       // each object in the playersDisplayList array will look like this:
       // identityName: "Redeye",
       // identityOrder: 3,
@@ -43,44 +103,7 @@ export default new Vuex.Store({
       roundNumber: 0,
       phase1: {
         timer: 0,
-        triviaQuestions: [
-          {
-              "category": "Entertainment: Board Games",
-              "type": "multiple",
-              "difficulty": "easy",
-              "question": "Carcassonne is based on which French town?",
-              "correct_answer": "Carcassonne",
-              "incorrect_answers": [
-                  "Paris",
-                  "Marseille",
-                  "Clermont-Ferrand"
-              ]
-          },
-          {
-              "category": "Entertainment: Board Games",
-              "type": "multiple",
-              "difficulty": "easy",
-              "question": "How many dice are used in the game of Yahtzee?",
-              "correct_answer": "Five",
-              "incorrect_answers": [
-                  "Four",
-                  "Six",
-                  "Eight"
-              ]
-          },
-          {
-              "category": "Entertainment: Board Games",
-              "type": "multiple",
-              "difficulty": "easy",
-              "question": "How many pieces are there on the board at the start of a game of chess?",
-              "correct_answer": "32",
-              "incorrect_answers": [
-                  "16",
-                  "20",
-                  "36"
-              ]
-          },
-        ]
+        triviaQuestions: []
       },
       phase2: {
         timer: 0
@@ -100,7 +123,7 @@ export default new Vuex.Store({
       gameQright: 0,
       gameQwrong: 0,
     },
-    stateUpdate: "trivia"
+    stateUpdate: "voting"
 
   },
   mutations: {

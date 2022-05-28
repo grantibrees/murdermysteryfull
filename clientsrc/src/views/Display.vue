@@ -9,12 +9,12 @@
       <trivia :phase1="getPhase1" />
     </div>
     <div v-if="stateUpdate == 'voting'">
-      <voting :phase2="getPhase2" />
+      <voting 
+      :phase2="getPhase2"
+      :identitiesList="getIdentitiesList"
+      :displayList="getDisplayList"
+      />
     </div>
-    <div v-if="stateUpdate == 'trivia'">
-      <trivia />
-    </div>
-
   </div>
 </template>
 
@@ -54,7 +54,15 @@ export default {
     },
 
     getPhase2() {
-      return this.$store.state.round.phase2;
+      return this.$store.state.currentRoundData.phase2;
+    },
+
+    getIdentitiesList() {
+      return this.$store.state.gameData.identitiesList;
+    },
+
+    getDisplayList() {
+      return this.$store.state.gameData.playersDisplayList;
     }
   },
 
