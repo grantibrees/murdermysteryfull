@@ -114,6 +114,7 @@ export default new Vuex.Store({
     allPlayers: [],
     // current player object
     player: {
+      hackerName: "",
       isAPossibleMole: false,
       mole: false,
       roundQcount: 0,
@@ -123,7 +124,7 @@ export default new Vuex.Store({
       gameQright: 0,
       gameQwrong: 0,
     },
-    stateUpdate: "voting"
+    stateUpdate: ""
 
   },
   mutations: {
@@ -194,19 +195,29 @@ export default new Vuex.Store({
       }
     },
     async roundTrigger({ commit, dispatch }, payload) {
-      console.log(payload);
-      commit("setCurrentRoundData",payload.game.roundData[payload.game.currentRoundNumber-1])
-      commit("setGameData",payload.game)
+      let roundIndex = payload.currentRoundNumber-1
+      commit("setCurrentRoundData", payload.roundData[roundIndex])
+      commit("setGameData", payload)
     },
 
-    async nextPhase({ commit, dispatch }, roundNum, phaseNum) {
+    async nextPhase({ commit, dispatch }) {
       try {
+        let roundNum = this.state.gameData.currentRoundNumber
+        let phaseNum = this.state.gameData.currentPhaseNumber
         //tells server to start next phase
-        let res = await api.get("round/" + roundNum + "/" + phaseNum + "/start");
+        let res = await api.get("round/" + roundNum + "/" + phaseNum);
+        // commit("setGameData", res.data)
+        console.log("nextPhase working: ");
         console.log(res.data)
       } catch (err) {
         console.log(err)
       }
+    },
+
+    async phaseTrigger({ commit, dispatch }, payload){
+      let roundIndex = payload.currentRoundNumber-1
+      commit("setCurrentRoundData", payload.roundData[roundIndex])
+      commit("setGameData", payload)
     },
 
     async sympathistOffer() { },
@@ -268,7 +279,9 @@ export default new Vuex.Store({
       const d = new Date();
       d.setTime(d.getTime() + (2 * 24 * 60 * 60 * 1000));
       let expires = "expires=" + d.toUTCString();
-      document.cookie = "hackerName=" + hackerName + ";" + expires + ";path=/";
+      let cookie1 = "hackerName=" + hackerName + ";" + expires + ";path=/";
+      document.cookie = cookie1 + "; Secure; SameSite=None; path=/";
+      console.log("set cookie for " + hackerName);
     },
 
     async checkForPlayer({ commit, dispatch }) {

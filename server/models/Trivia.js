@@ -11,7 +11,7 @@ const TriviaSchema = new Schema(
     correct_answer: { type: String },
     incorrect_answers: [],
   },
-  { timestamps: true, toJSON: { virtuals: true } }
+  // { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default TriviaSchema;

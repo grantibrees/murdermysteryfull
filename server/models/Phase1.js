@@ -9,7 +9,7 @@ const Phase1Schema = new Schema(
     timer: { type: Number },
     questions: [],
   },
-  { timestamps: true, toJSON: { virtuals: true } }
+  // { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default Phase1Schema;
