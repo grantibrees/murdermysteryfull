@@ -103,7 +103,7 @@ export default new Vuex.Store({
       roundNumber: 0,
       phase1Data: {
         timer: 0,
-        triviaQuestions: []
+        questions: []
       },
       phase2Data: {
         timer: 0

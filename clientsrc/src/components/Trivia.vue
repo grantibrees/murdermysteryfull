@@ -2,7 +2,8 @@
   <div class="">
     <h1>Trivia</h1>
         <p>{{ phase1Data.questions[question].category }}</p>
-        <p>{{ phase1Data.qestions[question].question }}</p>
+        <p>~ {{ phase1Data.questions[question].difficulty }} ~</p>
+        <p>{{ phase1Data.questions[question].question }}</p>
         <b-button @click="confirmPopUp(i)" 
         v-for="i in randomizeTriviaAnswers(phase1Data.questions[question].correct_answer, phase1Data.questions[question].incorrect_answers)" 
         :key="i" >
