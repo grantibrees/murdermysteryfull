@@ -1,6 +1,9 @@
 <template>
   <div class="display container-fluid">
     <h1>TV VIEW</h1>
+    <div>
+
+    </div>
   </div>
 </template>
 <script>
@@ -10,7 +13,7 @@ export default {
   data() {
     /* Data binding. */
     return {
-      something: {},
+      identities: [],
     };
   },
 
@@ -19,7 +22,7 @@ export default {
   } /* Runs functions or sets vars on startup */,
 
   computed: {
-    accessToken() {
+    identitiesList() {
       return this.$store.state.hostTokens.accessToken;
     }
   } /* Pulls values from the store. Always the value of the method that's in it. The live value. Constant value, has to have a return in it, it's a getter. It's like a listener, listening to the state. It gets the state.

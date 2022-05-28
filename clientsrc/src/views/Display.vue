@@ -11,6 +11,10 @@
     <div v-if="stateUpdate == 'voting'">
       <voting :phase2="getPhase2" />
     </div>
+    <div v-if="stateUpdate == 'trivia'">
+      <trivia />
+    </div>
+
   </div>
 </template>
 

@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const Phase2Schema = new Schema(
   {
-    timer: { type: Number },    
+    timer: { type: Number },  
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

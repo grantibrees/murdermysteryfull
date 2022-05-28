@@ -18,14 +18,21 @@ export const socketStore = {
         dispatch("moleAlert", payload);
       });
 
-      // socket.on("songScoreUpdated", (payload) => {
-      //   // console.log("song score updated", payload);
-      //   dispatch("getQueue", payload);
-      // });
-      // socket.on("activeSongUpdated", (payload) => {
-      //   // console.log("socket hit", payload.data.activeSong[0]);
-      //   commit("setActiveSong", payload.data.activeSong[0]);
-      // });
+      socket.on("roundStart", (payload) => {
+        // console.log("worked", payload);
+        dispatch("roundTrigger", payload);
+      });
+
+      socket.on("phaseStart", (payload) => {
+        // console.log("worked", payload);
+        dispatch("phaseTrigger", payload);
+      });
+      
+      socket.on("phaseStart", (payload) => {
+        // console.log("worked", payload);
+        dispatch("phaseTrigger", payload);
+      });
+
     },
     joinRoom({ commit, dispatch }, roomName) {
       socket.emit("dispatch", { action: "joinRoom", data: roomName });

@@ -13,8 +13,6 @@ export class GameController extends BaseController {
 
       // .put("", this.updateGameData)
       .put("/start", this.start)
-      // .put("/round/:roundnum", this.updateRoundData)
-      // .put("/round/:roundnum/:phasenum", this.updatePhaseData)
       // .put("/:updateidentitylist", this.updateIdentityList)
       // .post("/post", this.uploadIdentitiesJsonData)
       .post("/post", this.uploadTriviaJsonData)
@@ -23,7 +21,8 @@ export class GameController extends BaseController {
 
   async start(req, res, next){
     try {
-      let data = await gameService.start();
+      await gameService.createGameAndRound();
+      let data = await gameService.createMole();
       console.log(req.body),
       socketService.messageRoom(
         req.body.room,
