@@ -1,7 +1,13 @@
 <template>
   <div class="display container-fluid">
     <h1>TV VIEW</h1>
-    <vac :end-time="new Date().getTime() + getTimer">
+    <vac v-if="phase1Timer" :end-time="new Date().getTime() + getTimer(1)">
+      <span
+        slot="process"
+        slot-scope="{ timeObj }">{{ `Time Left: ${timeObj.m}:${timeObj.s}` }}</span>
+      <span slot="finish">Done!</span>
+    </vac>
+    <vac v-if="phase2Timer" :end-time="new Date().getTime() + getTimer(2)">
       <span
         slot="process"
         slot-scope="{ timeObj }">{{ `Time Left: ${timeObj.m}:${timeObj.s}` }}</span>
@@ -21,6 +27,8 @@ export default {
   data() {
     return {
       identities: [],
+      phase1Timer: false,
+      phase2Timer: false,
     };
   },
 
@@ -36,10 +44,16 @@ export default {
     getPlayersDisplayList() {
       return this.$store.state.gameData.playersDisplayList;
     },
-    getTimer() {
-      let phase = this.$store.state.gameData.currentPhaseNumber;
-      let time1 = this.$store.state.currentRoundData.phase1.timer;
-      let time2 = this.$store.state.currentRoundData.phase2.timer;
+
+    getPhase1Timer() {
+      return this.$store.state.currentRoundData.phase1Data.timer ? this.phase1Timer = true : this.phase1Timer = false;
+    },
+
+    getPhase2Timer() {
+      return this.$store.state.currentRoundData.phase2Data.timer ? this.phase2Timer = true : this.phase2Timer = false;
+    },
+
+    getTimer(phase) {
       console.log("WORKS", phase, time1, time2)
       if (phase == 1) {
         return this.$store.state.currentRoundData.phase1.timer;
