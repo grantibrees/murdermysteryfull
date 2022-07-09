@@ -21,9 +21,9 @@ class PlayersService {
   async uploadPlayers(data) {
     try {
       let list = data.players
-      console.log(list)
+      // console.log(list)
       for (let i in list) {
-        console.log(list[i])
+        // console.log(list[i])
         await dbContext.Player.create(list[i])
       }
     } catch (error) {

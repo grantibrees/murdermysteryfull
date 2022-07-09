@@ -53,9 +53,9 @@ class GameService {
   async uploadIdentities(data) {
     try {
       let list = data.identitiesList
-      console.log(list)
+      // console.log(list)
       for (let i in list) {
-        console.log(list[i])
+        // console.log(list[i])
         await dbContext.IdentityList.create(list[i])
       }
     } catch (error) {
@@ -66,7 +66,7 @@ class GameService {
   async uploadTrivia(data) {
     try {
       let list = data.trivia
-      console.log(list)
+      // console.log(list)
       for (let i in list) {
         // console.log(list[i])
         await dbContext.TriviaQuestion.create(list[i])
