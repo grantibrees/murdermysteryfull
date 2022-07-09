@@ -8,9 +8,8 @@ export class GameController extends BaseController {
     super("api/game");
     this.router
       .get("", this.getGameData)
-      .get("/identitylist", this.getIdentitiesList)
+      .get("/getIdentitiesList", this.getIdentitiesList)
       // .get("/hermes/:id", this.getHermesText)
-
       // .put("", this.updateGameData)
       .put("/start", this.start)
       // .put("/:updateidentitylist", this.updateIdentityList)
@@ -23,6 +22,7 @@ export class GameController extends BaseController {
     try {
       await gameService.createGame();
       let data = await gameService.createMole();
+      let identities = await gameService.setIdentities();
       // console.log(req.body),
       socketService.messageRoom(
         req.body.room,
@@ -43,6 +43,7 @@ export class GameController extends BaseController {
       next(error);
     }
   }
+
 
   async getIdentitiesList(req, res, next) {
     try {

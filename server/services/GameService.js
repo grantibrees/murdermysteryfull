@@ -1,4 +1,5 @@
 import { dbContext } from "../database/DbContext";
+import { gameStartup } from "../utilities/GameStartup";
 import { BadRequest } from "../utilities/Errors";
 
 class GameService {
@@ -13,8 +14,11 @@ class GameService {
       identitiesList: [],
     }
     // await dbContext.Game.create(game)
-    await dbContext.Game.findOneAndUpdate(game)
     console.log("game created");
+    await this.createMole()
+    await this.setIdentities()
+    await dbContext.Game.findOneAndUpdate(game)
+    return game
   }
 
   async createMole() {
@@ -33,7 +37,7 @@ class GameService {
       )
       updatedMole.mole = true
       // console.log(updatedMole)
-      return updatedMole
+      // return updatedMole
     }else{
       console.log("something wrong with mole");
       return "something wrong with mole"
@@ -43,6 +47,15 @@ class GameService {
     let game = await dbContext.Game.findOne({ _id: "62917cae3921a45ae316a97f" })
     return game;
   }
+
+  async setIdentities() {
+    let players = await this.getAllPlayerData()
+    let playerCount = players.length
+    await gameStartup.setIdentityList(playerCount)
+    // await this.updateAllPlayersData(players, uniqueIdentCombos)
+    
+  }
+
 
   // async getIdentitiesList(){
   //   let filter = {}

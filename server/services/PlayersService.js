@@ -1,5 +1,4 @@
 import { dbContext } from "../database/DbContext";
-import { gameStartup } from "../utilities/GameStartup";
 
 // Private Methods
 
@@ -30,22 +29,6 @@ class PlayersService {
       console.error(error)
     }
   }
-
-  // count players
-  // each player gets 2 unique identities
-
-  async setIdentities() {
-    let players = await this.getAllPlayerData()
-    let playerCount = players.length
-    let identitiesList = []
-
-    identitiesList = gameStartup.setIdentityList(playerCount)
-    // await this.updateAllPlayersData(players, uniqueIdentCombos)
-    return identitiesList
-  }
-
-  
-
 
   //takes in array of players with both identities
   async updateAllPlayersData(players, uniqueIdentCombos) {

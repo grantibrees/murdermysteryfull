@@ -1,3 +1,4 @@
+import { dbContext } from "../database/DbContext";
 import O from "esm"
 
 
@@ -54,7 +55,8 @@ makeIdentitiesList(playerCount) {
     //   console.log("editied array type: " + typeof(edited_arr[i]));
     // }
     // console.log("editied array type: " + typeof(edited_arr));
-    return edited_arr
+    let final_arr = this.assignIdenitities(edited_arr)
+    return final_arr
 }
 
 getRandomIdentity(fullIdentitiesList, newIdentList) {
@@ -119,7 +121,7 @@ getRandomIdentity(fullIdentitiesList, newIdentList) {
 }
 
   //Creates a list of possible identities to use based on the player count
-  setIdentityList(playerCount) {
+  async setIdentityList(playerCount) {
     let identitiesList = this.makeIdentitiesList(playerCount)
     let uniqueCombosCount = playerCount
     console.log("identList length: " + identitiesList.length);
@@ -182,6 +184,23 @@ getRandomIdentity(fullIdentitiesList, newIdentList) {
   }
 
 
+  assignIdenitities(identityArray){
+    //pull in players from db
+    let players = await dbContext.Game.players.find();
+    //loop thru players
+    //for each player, assign index from identity array
+    console.log("un-updated players from db: " + players);
+    for (let i = 0; i < players.length; i++) {
+      //for each identity pair in the identity array, assign it to ident slot 1 and 2
+      players[i].identity1 = identityArray[i][0]
+      players[i].identity1 = identityArray[i][1]
+    }
+    let updatedPlayers = await dbContext.Game.findOneAndUpdate(
+      { players: players})
+    console.log("updated players: " + players);
+    console.log("db looks like this now: " +updatedPlayers)
+    return
+  }
 
 
 }
