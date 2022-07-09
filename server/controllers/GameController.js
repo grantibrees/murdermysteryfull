@@ -23,7 +23,7 @@ export class GameController extends BaseController {
     try {
       await gameService.createGame();
       let data = await gameService.createMole();
-      console.log(req.body),
+      // console.log(req.body),
       socketService.messageRoom(
         req.body.room,
         "gameStart",

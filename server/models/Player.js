@@ -6,7 +6,7 @@ const PlayerSchema = new Schema(
     //player info
     firstName: { type: String },
     lastName: { type: String },
-    hackerName: { type: String, unique: true },
+    hackerName: { type: String },
     phoneNum: { type: Number },
     id: { type: Number, unique: true },
     //game data
@@ -19,15 +19,15 @@ const PlayerSchema = new Schema(
     funFact: { type: String },
     dataLeak: { type: String },
     //trivia question data
-    roundQcount: { type: Number},
-    roundQright: { type: Number},
-    roundQwrong: { type: Number},
     gameQcount: { type: Number},
     gameQright: { type: Number},
     gameQwrong: { type: Number},
-    // roundEarnedVotes: { type: Number},
-    // roundsWithPasses: [],
-    // roundsWithFails: []
+    roundQcount: { type: Number},
+    roundQright: { type: Number},
+    roundQwrong: { type: Number},
+    roundEarnedVotes: { type: Number},
+    roundsWithPasses: [],
+    roundsWithFails: []
   },
   // { timestamps: true, toJSON: { virtuals: true } }
 );

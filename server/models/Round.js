@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
-import Phase1 from "./Phase1";
-import Phase2 from "./Phase2";
+import Phase from "./Phase";
 const Schema = mongoose.Schema;
 
 const RoundSchema = new Schema(
   {
     roundNumber: { type: Number },
-    phase1Data: {},
-    phase2Data: {},
+    phase1Data: { type: Phase },
+    phase2Data: { type: Phase },
   },
   // { timestamps: true, toJSON: { virtuals: true } }
 );

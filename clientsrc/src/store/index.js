@@ -195,21 +195,21 @@ export default new Vuex.Store({
         //tells server to start game, set mole
         let res = await api.put("game/start", room);
         // console.log(res.data)
-        // console.log("going on to identityAssign");
-        // dispatch("identityAssign")
+        console.log("going on to identityAssign");
+        dispatch("identityAssign")
       } catch (err) {
         console.log(err)
       }
     },
-    // async identityAssign({ commit }){
-    //   try {
-    //     let res = await api.get("players/identity")
-    //     console.log(res.data)
-    //     console.log("identities set");
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // },
+    async identityAssign({ commit }){
+      try {
+        let res = await api.get("players/identity")
+        console.log(res.data)
+        console.log("identities set");
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async beginRound({ commit, dispatch }) {
       try {
         //tells server to start round, phase 1
