@@ -1,6 +1,7 @@
 import { dbContext } from "../database/DbContext";
 import { gameStartup } from "../utilities/GameStartup";
 import { BadRequest } from "../utilities/Errors";
+import { playersService } from "./PlayersService";
 
 class GameService {
 
@@ -8,15 +9,17 @@ class GameService {
     let game = {
       gameName: "murdermystery",
       roundData: [],
-      currentRoundNumber: 0,
-      currentPhaseNumber: 0,
-      playersList: [],
+      players: [],
       identitiesList: [],
     }
     // await dbContext.Game.create(game)
-    console.log("game created");
     await this.createMole()
-    await this.setIdentities()
+    console.log("mole function complete");
+    game.identitiesList = await this.setIdentities()
+    console.log("ident list in GameService.js: " + game.identitiesList);
+    
+    game.players = await this.addPlayersToGame()
+    
     await dbContext.Game.findOneAndUpdate(game)
     return game
   }
@@ -28,7 +31,7 @@ class GameService {
     possibleMolesArray = await dbContext.Player.find({ isAPossibleMole: true })
     // console.log(possibleMolesArray);
     let chosenMole = possibleMolesArray[randomIndex].hackerName
-    console.log(chosenMole);
+    console.log("chosen mole: " + chosenMole);
     //TODO CHANGE THIS BEFORE STARTING FOR REAL
     if(chosenMole){
       let updatedMole = await dbContext.Player.findOneAndUpdate(
@@ -38,7 +41,7 @@ class GameService {
       updatedMole.mole = true
       // console.log(updatedMole)
       // return updatedMole
-    }else{
+    } else {
       console.log("something wrong with mole");
       return "something wrong with mole"
     }
@@ -49,12 +52,14 @@ class GameService {
   }
 
   async setIdentities() {
-    let players = await this.getAllPlayerData()
+    let players = await playersService.getAllPlayerData()
+    console.log("in setIdentities, players count: " + players.length);
     let playerCount = players.length
-    await gameStartup.setIdentityList(playerCount)
+    let identityList = await gameStartup.makeIdentitiesList(playerCount)
+    return identityList
     // await this.updateAllPlayersData(players, uniqueIdentCombos)
     
-  }
+  } 
 
 
   // async getIdentitiesList(){
@@ -63,6 +68,8 @@ class GameService {
   //   return identitiesList;
   // }
 
+
+  // ADMIN STUFF BELOW
   async uploadIdentities(data) {
     try {
       let list = data.identitiesList

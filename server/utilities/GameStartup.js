@@ -41,8 +41,10 @@ makeIdentitiesList(playerCount) {
     }
     
     occurences["distribution"] = Math.floor((playerCount * 2) / identCount);
+    console.log("occurences math okay");
 
     for (let i = 0; i < identCount; i++) {
+      console.log("for loop randomIdents identCount index: " + i);
       newIdentList = this.getRandomIdentity(fullIdentitiesList, newIdentList)
     }
     console.log("newIdentList: " + newIdentList);
@@ -56,13 +58,15 @@ makeIdentitiesList(playerCount) {
     // }
     // console.log("editied array type: " + typeof(edited_arr));
     let final_arr = this.assignIdenitities(edited_arr)
-    return final_arr
+    console.log("final_arr" + final_arr);
+    return newIdentList
 }
+
 
 getRandomIdentity(fullIdentitiesList, newIdentList) {
     let randomIdent = fullIdentitiesList[Math.floor(Math.random() * fullIdentitiesList.length)];
     if (newIdentList.includes(randomIdent)) {
-      getRandomIdentity(fullIdentitiesList, newIdentList)
+      this.getRandomIdentity(fullIdentitiesList, newIdentList)
     } else {
       newIdentList.push(randomIdent);
     }
@@ -110,18 +114,10 @@ editArr(array, playerCount, obj) {
 }
 
 
-getRandomIdentity(fullIdentitiesList, newIdentList) {
-  let randomIdent = fullIdentitiesList[Math.floor(Math.random() * fullIdentitiesList.length)]
-  if (newIdentList.includes(randomIdent)) {
-    this.getRandomIdentity(fullIdentitiesList, newIdentList)
-  } else {
-    newIdentList.push(randomIdent)
-  }
-  return newIdentList
-}
-
-  //Creates a list of possible identities to use based on the player count
-  async setIdentityList(playerCount) {
+//This is old
+//Creates a list of possible identities to use based on the player count
+async setIdentityList(playerCount) {
+    console.log("hit setIdentityList(playerCount)");
     let identitiesList = this.makeIdentitiesList(playerCount)
     let uniqueCombosCount = playerCount
     console.log("identList length: " + identitiesList.length);
@@ -164,11 +160,11 @@ getRandomIdentity(fullIdentitiesList, newIdentList) {
       }
     }
 
-    // console.log("list length splice: " + usableIdentitiesList.length);
+    console.log("usable identities list: " + usableIdentitiesList);
     return usableIdentitiesList
   }
 
-  createIdentPair(identitiesList, offset) {
+createIdentPair(identitiesList, offset) {
     let pairList = []
     for (let i = 0; i < identitiesList.length; i++) {
       let pointer = i + offset
@@ -184,22 +180,27 @@ getRandomIdentity(fullIdentitiesList, newIdentList) {
   }
 
 
-  assignIdenitities(identityArray){
+async assignIdenitities(identityArray){
     //pull in players from db
-    let players = await dbContext.Game.players.find();
+    // let players = await dbContext.Game.players.find();
+    let game = await dbContext.Game.findOne({ _id: "62917cae3921a45ae316a97f" })
+    // console.log("un-updated players from db: " + players);
+  
     //loop thru players
     //for each player, assign index from identity array
-    console.log("un-updated players from db: " + players);
-    for (let i = 0; i < players.length; i++) {
+    for (let i = 0; i < game.players.length; i++) {
       //for each identity pair in the identity array, assign it to ident slot 1 and 2
-      players[i].identity1 = identityArray[i][0]
-      players[i].identity1 = identityArray[i][1]
+      game.players[i].identity1 = identityArray[i][0]
+      game.players[i].identity2 = identityArray[i][1]
     }
+    // console.log("game.players: " + game.players);
     let updatedPlayers = await dbContext.Game.findOneAndUpdate(
-      { players: players})
-    console.log("updated players: " + players);
-    console.log("db looks like this now: " +updatedPlayers)
-    return
+      { _id: "62917cae3921a45ae316a97f" },
+      game,
+      { new: true }
+      )
+      console.log("assignIdents func, updated players: " + updatedPlayers);
+    return updatedPlayers
   }
 
 

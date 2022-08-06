@@ -2,6 +2,7 @@ import express from "express";
 import BaseController from "../utilities/BaseController";
 import { gameService } from "../services/GameService";
 import socketService from "../services/SocketService";
+import { playersService } from "../services/PlayersService";
 
 export class GameController extends BaseController {
   constructor() {
@@ -20,15 +21,18 @@ export class GameController extends BaseController {
 
   async start(req, res, next){
     try {
-      await gameService.createGame();
-      let data = await gameService.createMole();
-      let identities = await gameService.setIdentities();
+      // empty players from db, then add them back
+      await playersService.deletePlayersFromGame();
+      await playersService.addPlayersToGame();
+      let data = await gameService.createGame();
+      console.log("data back from gameService.createGame(): " + data);
       // console.log(req.body),
       socketService.messageRoom(
         req.body.room,
         "gameStart",
         data
       );
+      console.log("game created");
       return res.send(data);
     } catch (error) {
       next(error);

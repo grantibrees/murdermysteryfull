@@ -1,4 +1,5 @@
 import { dbContext } from "../database/DbContext";
+import { gameService } from "./GameService";
 
 // Private Methods
 
@@ -17,6 +18,27 @@ class PlayersService {
     return playerData;
   }
 
+  async deletePlayersFromGame(){
+    let game = await gameService.getGameData()
+    game.players = []
+    await dbContext.Game.findOneAndUpdate(
+      { _id: "62917cae3921a45ae316a97f" },
+      game
+    )
+    console.log("deleted players: "+ game.players);
+  }
+
+  async addPlayersToGame(){
+    let game = await gameService.getGameData()
+    game.players = await this.getAllPlayerData()
+    await dbContext.Game.findOneAndUpdate(
+      { _id: "62917cae3921a45ae316a97f" },
+      game
+    )
+    console.log("added players, count: "+ game.players.length);
+  }
+
+  // ADMIN STUFF BELOW
   async uploadPlayers(data) {
     try {
       let list = data.players
