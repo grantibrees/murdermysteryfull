@@ -2,15 +2,15 @@ import express from "express";
 import BaseController from "../utilities/BaseController";
 import { gameService } from "../services/GameService";
 import socketService from "../services/SocketService";
+import { playersService } from "../services/PlayersService";
 
 export class GameController extends BaseController {
   constructor() {
     super("api/game");
     this.router
       .get("", this.getGameData)
-      .get("/identitylist", this.getIdentitiesList)
+      .get("/getIdentitiesList", this.getIdentitiesList)
       // .get("/hermes/:id", this.getHermesText)
-
       // .put("", this.updateGameData)
       .put("/start", this.start)
       // .put("/:updateidentitylist", this.updateIdentityList)
@@ -21,14 +21,19 @@ export class GameController extends BaseController {
 
   async start(req, res, next){
     try {
-      await gameService.createGame();
-      let data = await gameService.createMole();
+      // empty players from db, then add them back
+      await playersService.deletePlayersFromGame();
+      await playersService.addPlayersToGame();
+      console.log("players successfully added to game");
+      let data = await gameService.createGame();
+      console.log("data back from gameService.createGame(): " + data);
       // console.log(req.body),
       socketService.messageRoom(
         req.body.room,
         "gameStart",
         data
       );
+      console.log("game created");
       return res.send(data);
     } catch (error) {
       next(error);
@@ -43,6 +48,7 @@ export class GameController extends BaseController {
       next(error);
     }
   }
+
 
   async getIdentitiesList(req, res, next) {
     try {

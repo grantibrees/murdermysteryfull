@@ -7,7 +7,6 @@ export class PlayersController extends BaseController {
     super("api/players");
     this.router
       .get("", this.getAllPlayerData)
-      .get("/identity", this.setIdentities)
       .get("/:hackername", this.getPlayerData)
       // .get("/playerlist", this.getPlayerList)
 
@@ -17,15 +16,6 @@ export class PlayersController extends BaseController {
       // .put("/playerlist", this.updatePlayerList)
 
       .post("/post", this.postPlayers)
-  }
-
-  async setIdentities(req, res, next) {
-    try {
-      let identities = await playersService.setIdentities();
-      res.send(identities);
-    } catch (error) {
-      next(error);
-    }
   }
 
   async getAllPlayerData(req, res, next) {
