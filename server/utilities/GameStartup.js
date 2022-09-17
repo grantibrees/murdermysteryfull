@@ -47,7 +47,7 @@ makeIdentitiesList(playerCount) {
       console.log("for loop randomIdents identCount index: " + i);
       newIdentList = this.getRandomIdentity(fullIdentitiesList, newIdentList)
     }
-    console.log("newIdentList: " + newIdentList);
+    // console.log("newIdentList: " + newIdentList);
 
     let permutations_arr = this.permutations(newIdentList, occurences);
     let edited_arr = this.editArr(permutations_arr, playerCount, occurences);
@@ -58,7 +58,7 @@ makeIdentitiesList(playerCount) {
     // }
     // console.log("editied array type: " + typeof(edited_arr));
     let final_arr = this.assignIdenitities(edited_arr)
-    console.log("final_arr" + final_arr);
+    // console.log("final_arr" + final_arr);
     return newIdentList
 }
 
@@ -160,7 +160,7 @@ async setIdentityList(playerCount) {
       }
     }
 
-    console.log("usable identities list: " + usableIdentitiesList);
+    // console.log("usable identities list: " + usableIdentitiesList);
     return usableIdentitiesList
   }
 
@@ -199,7 +199,7 @@ async assignIdenitities(identityArray){
       game,
       { new: true }
       )
-      console.log("assignIdents func, updated players: " + updatedPlayers);
+      // console.log("assignIdents func, updated players: " + updatedPlayers);
     return updatedPlayers
   }
 

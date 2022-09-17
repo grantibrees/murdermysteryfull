@@ -6,7 +6,7 @@ const IdentityOrderListSchema = new Schema(
         identityName: { type: String },
         identityOrder: { type: Number },
         totalVoteCount: { type: Number },
-        revealedStatus: { type: String }
+        revealedStatus: { type: Boolean }
     }
 )
 

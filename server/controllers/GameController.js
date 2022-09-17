@@ -24,6 +24,7 @@ export class GameController extends BaseController {
       // empty players from db, then add them back
       await playersService.deletePlayersFromGame();
       await playersService.addPlayersToGame();
+      console.log("players successfully added to game");
       let data = await gameService.createGame();
       console.log("data back from gameService.createGame(): " + data);
       // console.log(req.body),

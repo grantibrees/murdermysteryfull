@@ -15,32 +15,51 @@ class GameService {
     // await dbContext.Game.create(game)
     await this.createMole()
     console.log("mole function complete");
-    game.identitiesList = await this.setIdentities()
-    console.log("ident list in GameService.js: " + game.identitiesList);
-    
-    game.players = await this.addPlayersToGame()
-    
-    await dbContext.Game.findOneAndUpdate(game)
+    game.identitiesList = await this.setIdentities();
+    game.roundData = {
+      roundNumber: 0,
+      phase1Data:   {
+        timer: 0,
+        questions: [],
+      },
+      phase2Data:   {
+        timer: 0,
+        questions: [],
+      },
+    }
+    console.log("game.identitiesList[0].identityName: " + game.identitiesList[0].identityName);
+
+        await dbContext.Game.findByIdAndUpdate("62917cae3921a45ae316a97f", game)
+
+    console.log("found and updated game [in GameService]");
     return game
   }
 
   async createMole() {
-    let pCount = await dbContext.Player.countDocuments();
+    let game = await dbContext.Game.findOne({ _id: "62917cae3921a45ae316a97f" })
+    let players = game.players
+    let pCount = game.players.length;
     let randomIndex = Math.floor(Math.random() * pCount) - 1
     let possibleMolesArray = []
-    possibleMolesArray = await dbContext.Player.find({ isAPossibleMole: true })
-    // console.log(possibleMolesArray);
+    for (let i = 0; i < players.length; i++) {
+       if (players[i].isAPossibleMole == true){
+          possibleMolesArray.push(players[i]) 
+        }
+      }
     let chosenMole = possibleMolesArray[randomIndex].hackerName
     console.log("chosen mole: " + chosenMole);
     //TODO CHANGE THIS BEFORE STARTING FOR REAL
     if(chosenMole){
-      let updatedMole = await dbContext.Player.findOneAndUpdate(
-        { hackerName: chosenMole },
-        { mole: false }
+      for (let i = 0; i < game.players.length; i++) {
+        if (game.players[i].hackerName == chosenMole){
+          game.players[i].mole = true
+        }
+      }
+      await dbContext.Game.findOneAndUpdate(
+        { _id: "62917cae3921a45ae316a97f" },
+        { players: game.players}
       )
-      updatedMole.mole = true
-      // console.log(updatedMole)
-      // return updatedMole
+
     } else {
       console.log("something wrong with mole");
       return "something wrong with mole"
@@ -56,9 +75,21 @@ class GameService {
     console.log("in setIdentities, players count: " + players.length);
     let playerCount = players.length
     let identityList = await gameStartup.makeIdentitiesList(playerCount)
-    return identityList
+    let newIdentityList = []
+    //TODO refactor, add this next for loop funtion back into the makeIdentitiesList fn above
+    for (let i = 0; i < identityList.length; i++) {
+      newIdentityList.push(
+        {
+          identityName: identityList[i],
+          identityOrder: i,
+          totalVoteCount: 0,
+          revealedStatus: true
+      }
+      )
+    }
+    console.log("newIdentityList.length: " + newIdentityList.length);
+    return newIdentityList
     // await this.updateAllPlayersData(players, uniqueIdentCombos)
-    
   } 
 
 
